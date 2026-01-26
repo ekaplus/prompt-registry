@@ -1,12 +1,11 @@
-import type { WidgetPlugin, WidgetPrompt, WidgetContext } from "./types";
-import { coderabbitWidget } from "./coderabbit";
 import { bookWidget } from "./book";
+import type { WidgetContext, WidgetPlugin, WidgetPrompt } from "./types";
 
 export * from "./types";
 
 // Registry of all widget plugins
 const widgetPlugins: WidgetPlugin[] = [
-  coderabbitWidget,
+  //coderabbitWidget,
   bookWidget,
 ];
 
