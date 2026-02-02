@@ -6,7 +6,7 @@ export * from "./types";
 // Registry of all widget plugins
 const widgetPlugins: WidgetPlugin[] = [
   //coderabbitWidget,
-  bookWidget,
+  //bookWidget,
 ];
 
 /**
