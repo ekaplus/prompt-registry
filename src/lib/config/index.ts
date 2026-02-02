@@ -45,6 +45,7 @@ export interface FeaturesConfig {
   aiGeneration?: boolean;
   mcp?: boolean;
   comments?: boolean;
+  sharePrompts?: boolean;
 }
 
 export interface Sponsor {
@@ -155,6 +156,7 @@ function applyEnvOverrides(config: PromptsConfig): PromptsConfig {
       aiGeneration: envBool('PCHAT_FEATURE_AI_GENERATION', config.features.aiGeneration ?? false),
       mcp: envBool('PCHAT_FEATURE_MCP', config.features.mcp ?? false),
       comments: envBool('PCHAT_FEATURE_COMMENTS', config.features.comments ?? true),
+      sharePrompts: envBool('PCHAT_FEATURE_SHARE_PROMPTS', config.features.sharePrompts ?? false),
     },
     homepage: env.PCHAT_NAME ? {
       // If custom branding via env, use clone branding mode
@@ -208,6 +210,7 @@ export async function getConfig(): Promise<PromptsConfig> {
         aiSearch: false,
         aiGeneration: false,
         comments: true,
+        sharePrompts: false,
       },
     };
   }

@@ -45,6 +45,7 @@ export default defineConfig({
     aiSearch: false,
     aiGeneration: false,
     mcp: false,
+    sharePrompts: false,
   },
 
   // Homepage customization (clone branding mode)
