@@ -219,7 +219,7 @@ export function PromptFilters({ categories, tags, currentFilters, aiSearchEnable
       {/* Shared filters - shown on desktop always, on mobile when showFilters is true */}
       <div className={`space-y-4 ${showFilters ? "block" : "hidden"} lg:block`}>
       {/* Type filter */}
-      <div className="space-y-1.5">
+      {/* <div className="space-y-1.5">
         <Label className="text-xs">{t("prompts.promptType")}</Label>
         <Select
           value={currentFilters.type || "all"}
@@ -240,7 +240,7 @@ export function PromptFilters({ categories, tags, currentFilters, aiSearchEnable
             ))}
           </SelectContent>
         </Select>
-      </div>
+      </div> */}
 
       {/* Category filter */}
       {categories.length > 0 && (
@@ -385,7 +385,7 @@ export function PromptFilters({ categories, tags, currentFilters, aiSearchEnable
               </Link>
             </>
           )}
-          <Link 
+          {/*<Link 
             href="https://github.com/f/prompts.chat" 
             target="_blank" 
             rel="noopener noreferrer"
@@ -397,7 +397,7 @@ export function PromptFilters({ categories, tags, currentFilters, aiSearchEnable
             </svg>
             GitHub
             <ExternalLink className="h-2.5 w-2.5 ml-auto opacity-50" />
-          </Link>
+          </Link> */}
         </nav>
       </div>
       </div>

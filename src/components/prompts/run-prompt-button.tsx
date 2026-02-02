@@ -77,11 +77,11 @@ const videoPlatforms: Platform[] = [
 
 // Code platforms (IDEs + code generation tools)
 const codePlatforms: Platform[] = [
-  { id: "windsurf", name: "Windsurf", baseUrl: "windsurf://", isDeeplink: true, supportsQuerystring: false, sponsor: true },
+  //{ id: "windsurf", name: "Windsurf", baseUrl: "windsurf://", isDeeplink: true, supportsQuerystring: false, sponsor: true },
   { id: "vscode", name: "VS Code", baseUrl: "vscode://", isDeeplink: true, supportsQuerystring: false },
-  { id: "vscode-insiders", name: "VS Code Insiders", baseUrl: "vscode-insiders://", isDeeplink: true, supportsQuerystring: false },
+  //{ id: "vscode-insiders", name: "VS Code Insiders", baseUrl: "vscode-insiders://", isDeeplink: true, supportsQuerystring: false },
   { id: "cursor", name: "Cursor", baseUrl: "cursor://anysphere.cursor-deeplink/prompt", isDeeplink: true },
-  { id: "goose", name: "Goose", baseUrl: "goose://recipe", isDeeplink: true },
+  //{ id: "goose", name: "Goose", baseUrl: "goose://recipe", isDeeplink: true },
     {
     id: "github-copilot",
     name: "GitHub Copilot",
@@ -91,10 +91,10 @@ const codePlatforms: Platform[] = [
       { name: "Copilot Agents", baseUrl: "https://github.com/copilot/agents" },
     ],
   },
-  { id: "bolt", name: "Bolt", baseUrl: "https://bolt.new" },
-  { id: "lovable", name: "Lovable", baseUrl: "https://lovable.dev" },
-  { id: "v0", name: "v0", baseUrl: "https://v0.dev/chat" },
-  { id: "ai2sql", name: "AI2SQL", baseUrl: "https://builder.ai2sql.io/dashboard/builder-all-lp?tab=generate" },
+  //{ id: "bolt", name: "Bolt", baseUrl: "https://bolt.new" },
+  //{ id: "lovable", name: "Lovable", baseUrl: "https://lovable.dev" },
+  //{ id: "v0", name: "v0", baseUrl: "https://v0.dev/chat" },
+  //{ id: "ai2sql", name: "AI2SQL", baseUrl: "https://builder.ai2sql.io/dashboard/builder-all-lp?tab=generate" },
 ];
 
 // Chat platforms (AI assistants)
@@ -103,9 +103,9 @@ const chatPlatforms: Platform[] = [
   { id: "claude", name: "Claude", baseUrl: "https://claude.ai/new" },
   { id: "copilot", name: "Microsoft Copilot", baseUrl: "https://copilot.microsoft.com", supportsQuerystring: false },
   { id: "deepseek", name: "DeepSeek", baseUrl: "https://chat.deepseek.com", supportsQuerystring: false },
-  { id: "fal", name: "fal.ai Sandbox", baseUrl: "https://fal.ai/sandbox" },
+  //{ id: "fal", name: "fal.ai Sandbox", baseUrl: "https://fal.ai/sandbox" },
   { id: "gemini", name: "Gemini", baseUrl: "https://gemini.google.com/app", supportsQuerystring: false },
-  { id: "goose", name: "Goose", baseUrl: "goose://recipe", isDeeplink: true },
+  //{ id: "goose", name: "Goose", baseUrl: "goose://recipe", isDeeplink: true },
   {
     id: "grok",
     name: "Grok",
@@ -116,15 +116,15 @@ const chatPlatforms: Platform[] = [
       { name: "Grok Think", baseUrl: "https://grok.com/chat?reasoningMode=think" },
     ],
   },
-  { id: "huggingface", name: "HuggingChat", baseUrl: "https://huggingface.co/chat" },
-  { id: "llama", name: "Meta AI", baseUrl: "https://www.meta.ai" },
-  { id: "manus", name: "Manus", baseUrl: "https://manus.im/app" },
-  { id: "mistral", name: "Le Chat", baseUrl: "https://chat.mistral.ai/chat" },
+  //{ id: "huggingface", name: "HuggingChat", baseUrl: "https://huggingface.co/chat" },
+  //{ id: "llama", name: "Meta AI", baseUrl: "https://www.meta.ai" },
+  //{ id: "manus", name: "Manus", baseUrl: "https://manus.im/app" },
+  //{ id: "mistral", name: "Le Chat", baseUrl: "https://chat.mistral.ai/chat" },
   { id: "perplexity", name: "Perplexity", baseUrl: "https://www.perplexity.ai" },
-  { id: "phind", name: "Phind", baseUrl: "https://www.phind.com" },
-  { id: "pi", name: "Pi", baseUrl: "https://pi.ai", supportsQuerystring: false },
-  { id: "poe", name: "Poe", baseUrl: "https://poe.com", supportsQuerystring: false },
-  { id: "you", name: "You.com", baseUrl: "https://you.com" },
+  //{ id: "phind", name: "Phind", baseUrl: "https://www.phind.com" },
+  //{ id: "pi", name: "Pi", baseUrl: "https://pi.ai", supportsQuerystring: false },
+  //{ id: "poe", name: "Poe", baseUrl: "https://poe.com", supportsQuerystring: false },
+  //{ id: "you", name: "You.com", baseUrl: "https://you.com" },
 ];
 
 function buildUrl(platformId: string, baseUrl: string, promptText: string, promptTitle?: string, promptDescription?: string): string {

@@ -442,12 +442,13 @@ export function Header({ authProvider = "credentials", allowRegistration = true 
                   </DropdownMenuItem>
                 </>
               )}
-              <DropdownMenuItem asChild>
+
+              {/* <DropdownMenuItem asChild>
                 <Link href="/developers">
                   <Hammer className="mr-2 h-4 w-4" />
                   {t("nav.developers")}
                 </Link>
-              </DropdownMenuItem>
+              </DropdownMenuItem> */}
             </DropdownMenuContent>
           </DropdownMenu>
         </nav>

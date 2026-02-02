@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXTAUTH_URL || "http://localhost:3000"),
   title: {
     default: "prompts.chat - AI Prompts Community",
-    template: "%s | prompts.chat",
+    template: "%s | Quoreka",
   },
   description:
     "Discover, collect, and share the best AI prompts for ChatGPT, Claude, Gemini, and more. Join the largest community of AI prompt engineers and creators.",
