@@ -385,7 +385,7 @@ export function PromptFilters({ categories, tags, currentFilters, aiSearchEnable
               </Link>
             </>
           )}
-          <Link 
+          {/* <Link 
             href="https://github.com/f/awesome-chatgpt-prompts" 
             target="_blank" 
             rel="noopener noreferrer"
@@ -397,7 +397,7 @@ export function PromptFilters({ categories, tags, currentFilters, aiSearchEnable
             </svg>
             GitHub
             <ExternalLink className="h-2.5 w-2.5 ml-auto opacity-50" />
-          </Link>
+          </Link> */}
         </nav>
       </div>
       </div>
