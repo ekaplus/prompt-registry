@@ -750,7 +750,7 @@ export function PromptForm({ categories, tags, initialData, initialContributors 
           </div>
 
         {/* ===== PROMPT WRITING GUIDE LINK ===== */}
-        <Link
+        {/* <Link
           href="/how_to_write_effective_prompts"
           target="_blank"
           className="flex items-center gap-2 p-3 rounded-lg border bg-muted/30 hover:bg-muted/50 transition-colors text-sm text-muted-foreground hover:text-foreground"
@@ -758,7 +758,7 @@ export function PromptForm({ categories, tags, initialData, initialContributors 
           <BookOpen className="h-4 w-4 text-primary" />
           <span>{t("learnHowToWritePrompts")}</span>
           <ExternalLink className="h-3 w-3 ml-auto" />
-        </Link>
+        </Link> */}
 
         {/* ===== METADATA SECTION ===== */}
         <div className="space-y-4 pb-6 border-b">
@@ -947,7 +947,7 @@ export function PromptForm({ categories, tags, initialData, initialContributors 
           />
 
           {/* Contributors */}
-          <div className="space-y-2">
+          {/* <div className="space-y-2">
             <label className="text-sm font-medium block">{t("promptContributors")}</label>
             <p className="text-xs text-muted-foreground">{t("contributorsDescription")}</p>
             <ContributorSearch
@@ -955,7 +955,7 @@ export function PromptForm({ categories, tags, initialData, initialContributors 
               onSelect={(user) => setContributors((prev) => [...prev, user])}
               onRemove={(userId) => setContributors((prev) => prev.filter((u) => u.id !== userId))}
             />
-          </div>
+          </div> */}
 
           {/* Advanced Section */}
           <div className="border rounded-lg">
@@ -1029,7 +1029,7 @@ export function PromptForm({ categories, tags, initialData, initialContributors 
                 </div>
 
                 {/* Works Best With MCP */}
-                <div className="space-y-2">
+                {/* <div className="space-y-2">
                   <label className="text-sm font-medium block">{t("worksBestWithMCP")}</label>
                   <p className="text-xs text-muted-foreground">{t("worksBestWithMCPDescription")}</p>
                   {bestWithMCP.length > 0 && (
@@ -1082,7 +1082,7 @@ export function PromptForm({ categories, tags, initialData, initialContributors 
                       {t("add")}
                     </Button>
                   </div>
-                </div>
+                </div> */}
               </div>
             )}
           </div>

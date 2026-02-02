@@ -54,12 +54,12 @@ export default async function NewPromptPage({ searchParams }: PageProps) {
 
   return (
     <div className="container max-w-3xl py-8">
-      <Alert className="mb-6">
+      {/* <Alert className="mb-6">
         <Info className="h-4 w-4" />
         <AlertDescription>
           {t("createInfo")}
         </AlertDescription>
-      </Alert>
+      </Alert> */}
       <PromptForm 
         categories={categories} 
         tags={tags} 

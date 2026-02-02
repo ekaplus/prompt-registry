@@ -219,7 +219,7 @@ export function PromptFilters({ categories, tags, currentFilters, aiSearchEnable
       {/* Shared filters - shown on desktop always, on mobile when showFilters is true */}
       <div className={`space-y-4 ${showFilters ? "block" : "hidden"} lg:block`}>
       {/* Type filter */}
-      <div className="space-y-1.5">
+      {/* <div className="space-y-1.5">
         <Label className="text-xs">{t("prompts.promptType")}</Label>
         <Select
           value={currentFilters.type || "all"}
@@ -240,7 +240,7 @@ export function PromptFilters({ categories, tags, currentFilters, aiSearchEnable
             ))}
           </SelectContent>
         </Select>
-      </div>
+      </div> */}
 
       {/* Category filter */}
       {categories.length > 0 && (
