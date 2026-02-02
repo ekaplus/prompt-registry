@@ -3,6 +3,14 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Play, RotateCcw, CheckCircle2, XCircle, AlertTriangle, ArrowRight, RefreshCw } from "lucide-react";
+import { useTranslations, useLocale } from "next-intl";
+import { getLocaleField, type ChainScenario, type ChainStep } from "./locales";
+
+const scenarioIcons: Record<string, typeof CheckCircle2> = {
+  success: CheckCircle2,
+  retry: RefreshCw,
+  fallback: AlertTriangle,
+};
 
 type StepStatus = "pending" | "running" | "success" | "failed" | "retrying" | "fallback";
 
@@ -15,47 +23,19 @@ interface Step {
   attempt?: number;
 }
 
-const scenarios = [
-  {
-    id: "success",
-    name: "Happy Path",
-    description: "All steps succeed",
-    icon: CheckCircle2,
-    color: "green",
-  },
-  {
-    id: "retry",
-    name: "With Retry",
-    description: "Step fails, retry succeeds",
-    icon: RefreshCw,
-    color: "amber",
-  },
-  {
-    id: "fallback",
-    name: "With Fallback",
-    description: "Primary fails, fallback used",
-    icon: AlertTriangle,
-    color: "purple",
-  },
-];
 
 export function ChainErrorDemo() {
   const [selectedScenario, setSelectedScenario] = useState<string>("success");
   const [isRunning, setIsRunning] = useState(false);
-  const [steps, setSteps] = useState<Step[]>([
-    { id: "extract", name: "Extract Data", status: "pending" },
-    { id: "validate", name: "Validate Output", status: "pending" },
-    { id: "transform", name: "Transform Data", status: "pending" },
-    { id: "output", name: "Final Output", status: "pending" },
-  ]);
+  const t = useTranslations("book.interactive");
+  const locale = useLocale();
+  
+  const scenarios = getLocaleField(locale, "scenarios");
+  const initialSteps = getLocaleField(locale, "steps") as Step[];
+  const [steps, setSteps] = useState<Step[]>(initialSteps);
 
   const resetSteps = () => {
-    setSteps([
-      { id: "extract", name: "Extract Data", status: "pending" },
-      { id: "validate", name: "Validate Output", status: "pending" },
-      { id: "transform", name: "Transform Data", status: "pending" },
-      { id: "output", name: "Final Output", status: "pending" },
-    ]);
+    setSteps(getLocaleField(locale, "steps") as Step[]);
   };
 
   const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
@@ -162,7 +142,7 @@ export function ChainErrorDemo() {
   return (
     <div className="my-6 border rounded-lg overflow-hidden">
       <div className="px-4 py-3 bg-muted/50 border-b flex items-center justify-between">
-        <span className="font-medium text-sm">Chain Error Handling Demo</span>
+        <span className="font-medium text-sm">{t("chainErrorHandlingDemo")}</span>
         <div className="flex items-center gap-2">
           <button
             onClick={resetSteps}
@@ -177,7 +157,7 @@ export function ChainErrorDemo() {
             className="flex items-center gap-1.5 px-3 py-1.5 bg-primary text-primary-foreground rounded text-sm font-medium disabled:opacity-50"
           >
             <Play className="w-3.5 h-3.5" />
-            Run
+            {t("run")}
           </button>
         </div>
       </div>
@@ -186,7 +166,7 @@ export function ChainErrorDemo() {
         {/* Scenario Selector */}
         <div className="flex gap-2 mb-4">
           {scenarios.map(scenario => {
-            const Icon = scenario.icon;
+            const Icon = scenarioIcons[scenario.id];
             return (
               <button
                 key={scenario.id}
@@ -235,7 +215,7 @@ export function ChainErrorDemo() {
                   <span className="text-sm font-medium">{step.name}</span>
                   {step.attempt && step.attempt > 1 && (
                     <span className="text-xs px-1.5 py-0.5 rounded bg-amber-200 dark:bg-amber-800 text-amber-800 dark:text-amber-200">
-                      Attempt {step.attempt}
+                      {t("attempt")} {step.attempt}
                     </span>
                   )}
                 </div>
@@ -246,10 +226,10 @@ export function ChainErrorDemo() {
                   <p className="text-xs text-muted-foreground font-mono">{step.output}</p>
                 )}
                 {step.status === "retrying" && (
-                  <p className="text-xs text-amber-600 dark:text-amber-400">Retrying with error feedback...</p>
+                  <p className="text-xs text-amber-600 dark:text-amber-400">{t("retryingWithFeedback")}</p>
                 )}
                 {step.status === "fallback" && (
-                  <p className="text-xs text-purple-600 dark:text-purple-400">Switching to fallback approach...</p>
+                  <p className="text-xs text-purple-600 dark:text-purple-400">{t("switchingToFallback")}</p>
                 )}
               </div>
             </div>
@@ -260,19 +240,19 @@ export function ChainErrorDemo() {
         <div className="mt-4 pt-4 border-t flex flex-wrap gap-4 text-xs text-muted-foreground">
           <div className="flex items-center gap-1.5">
             <CheckCircle2 className="w-3.5 h-3.5 text-green-500" />
-            <span>Success</span>
+            <span>{t("success")}</span>
           </div>
           <div className="flex items-center gap-1.5">
             <XCircle className="w-3.5 h-3.5 text-red-500" />
-            <span>Failed</span>
+            <span>{t("failed")}</span>
           </div>
           <div className="flex items-center gap-1.5">
             <RefreshCw className="w-3.5 h-3.5 text-amber-500" />
-            <span>Retry</span>
+            <span>{t("retry")}</span>
           </div>
           <div className="flex items-center gap-1.5">
             <AlertTriangle className="w-3.5 h-3.5 text-purple-500" />
-            <span>Fallback</span>
+            <span>{t("fallback")}</span>
           </div>
         </div>
       </div>

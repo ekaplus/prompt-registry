@@ -144,6 +144,10 @@
     "mcpCommandPlaceholder": "npx -y @mcp/server-name",
     "mcpToolsPlaceholder": "tool1, tool2",
     "add": "Əlavə et",
+    "workflowLink": "İş Axını Linki",
+    "workflowLinkDescription": "İstifadəçilərin bu iş axınını sınaya biləcəyi URL (əvvəlki/sonrakı addımları olan promptlar üçün göstərilir)",
+    "workflowLinkCreateNote": "Əvvəlcə promptu saxlayın, sonra bu sahəni aktivləşdirmək üçün əlaqəli promptlar əlavə edin.",
+    "workflowLinkPlaceholder": "https://example.com/workflow-demo",
     "advancedOptions": "Təkmılləşdirilmiş Seçimlər",
     "searchContributors": "İstifadəçi adına görə axtar...",
     "noUsersFound": "İstifadəçi tapılmadı",
@@ -837,6 +841,32 @@
     "profileUrl": "Profil URL-iniz",
     "email": "E-poçt",
     "emailCannotChange": "E-poçt dəyişdirilə bilməz",
+    "bio": "Haqqında",
+    "bioPlaceholder": "Özünüz haqqında bir az danışın...",
+    "bioCharCount": "{count}/250",
+    "customLinks": "Linklər",
+    "customLinksDescription": "Sosial profil və veb saytlarınıza linklər əlavə edin",
+    "addLink": "Link Əlavə Et",
+    "linkType": "Növ",
+    "linkUrl": "URL",
+    "linkLabel": "Etiket (ixtiyari)",
+    "linkLabelPlaceholder": "Xüsusi etiket",
+    "removeLink": "Sil",
+    "maxLinksReached": "Maksimum 5 link icazə verilir",
+    "invalidUrl": "Zəhmət olmasa düzgün URL daxil edin",
+    "linkTypes": {
+      "website": "Veb Sayt",
+      "github": "GitHub",
+      "twitter": "X (Twitter)",
+      "linkedin": "LinkedIn",
+      "instagram": "Instagram",
+      "youtube": "YouTube",
+      "twitch": "Twitch",
+      "discord": "Discord",
+      "mastodon": "Mastodon",
+      "bluesky": "Bluesky",
+      "sponsor": "Sponsor"
+    },
     "saveChanges": "Dəyişiklikləri Saxla",
     "profileUpdated": "Profil uğurla yeniləndi",
     "usernameTaken": "Bu istifadəçi adı artıq götürülüb"
@@ -879,7 +909,7 @@
   "homepage": {
     "heroTitle": "AI Promptları üçün Azad",
     "heroSubtitle": "Sosial Platforma",
-    "heroDescription": "İcmadan promptları paylaşın, kəşf edin və toplayın. Azad və açıq mənbə — tam məxfilik üçün öz serverinizi qurun.",
+    "heroDescription": "Promptlar bütün generativ süni intellektin əsasıdır. Onları icmadan paylaşın, kəşf edin və toplayın. Azad və açıq mənbə — tam məxfilik ilə öz serverinizi qurun.",
     "heroFeature1": "Azad və Açıq Mənbə",
     "heroFeature2": "Məxfilik üçün Öz Serveriniz",
     "heroFeature3": "Komandalar və Təşkilatlar üçün",
@@ -1120,6 +1150,14 @@
     "terms": "Şərtlər",
     "support": "Dəstək"
   },
+  "cookies": {
+    "message": "Analitika üçün çərəzlərdən istifadə edirik.",
+    "accept": "Qəbul et",
+    "reject": "Rədd et",
+    "confirmMessage": "Əminsiniz? Analitika yaxşılaşdırmağa kömək edir. Bu tətbiq tamamilə açıq mənbədir.",
+    "nevermind": "Ləğv et",
+    "confirmReject": "Bəli, rədd et"
+  },
   "support": {
     "title": "Dəstək",
     "description": "Ümumi suallara cavab tapın və ya icmamızdan kömək alın.",
@@ -1196,8 +1234,8 @@
   },
   "connectedPrompts": {
     "title": "Prompt Axını",
-    "description": "Bəzi promptlar çox addımlı iş axınları kimi işləyir. Ardıcıllıq yaratmaq üçün promptlarınızı birləşdirin.",
     "addPromptFlow": "Bu promptun növbəti addımı var",
+    "testWorkflow": "İş Axınını Çalışdır",
     "addPrevious": "Əvvəlkini Əlavə et",
     "addNext": "Növbətini Əlavə et",
     "addPreviousTitle": "Əvvəlki Promptu Əlavə et",
@@ -1221,7 +1259,19 @@
     "connectionAdded": "Əlaqə uğurla əlavə edildi",
     "connectionDeleted": "Əlaqə silindi",
     "deleteFailed": "Əlaqə silinmədi",
-    "noResults": "Prompt tapılmadı"
+    "noResults": "Prompt tapılmadı",
+    "outputText": "mətn",
+    "outputImage": "şəkil",
+    "outputVideo": "video",
+    "outputAudio": "audio",
+    "outputStructured": "strukturlaşdırılmış",
+    "outputSkill": "bacarıq",
+    "inputImage": "şəkil",
+    "inputVideo": "video",
+    "inputDocument": "sənəd",
+    "inputImages": "{count} şəkil",
+    "inputVideos": "{count} video",
+    "inputDocuments": "{count} sənəd"
   },
   "promptWritingGuide": {
     "title": "Əla Promptlar Necə Yazılır",
@@ -1436,16 +1486,34 @@
     "viewAllContributors": "Bütün töhfəçilərə baxın"
   },
   "kids": {
-    "header": { "title": "Promi-in Prompt Məktəbi", "levels": "səviyyə", "home": "Ana Səhifə", "map": "Xəritə", "mainSite": "Əsas Sayt" },
+    "header": {
+      "title": "Promi-in Prompt Məktəbi",
+      "levels": "səviyyə",
+      "home": "Ana Səhifə",
+      "map": "Xəritə",
+      "mainSite": "Əsas Sayt"
+    },
     "home": {
       "badge": "Uşaqlar üçün Öyrənmə",
       "title": "AI ilə Danışmağı Öyrən!",
       "subtitle": "Robot Promi ilə birlikdə əyləncəli bir macəraya çıx və möhtəşəm promptlar yazmağı öyrən!",
-      "promiIntro": { "greeting": "Salam, mən Promi-əm! 🤖", "message": "Mən SƏNİN köməyinə ehtiyacı olan dost robotam! Promptları daha yaxşı başa düşməyimə kömək edərsən?" },
+      "promiIntro": {
+        "greeting": "Salam, mən Promi-əm! 🤖",
+        "message": "Mən SƏNİN köməyinə ehtiyacı olan dost robotam! Promptları daha yaxşı başa düşməyimə kömək edərsən?"
+      },
       "features": {
-        "games": { "title": "Əyləncəli Oyunlar", "description": "Sürüklə-burax oyunları və testlərlə öyrən" },
-        "stories": { "title": "Gözəl Hekayələr", "description": "Promi ilə həyəcanlı macəralara çıx" },
-        "stars": { "title": "Ulduz Qazan", "description": "Ulduzlar topla və yeni səviyyələri aç" }
+        "games": {
+          "title": "Əyləncəli Oyunlar",
+          "description": "Sürüklə-burax oyunları və testlərlə öyrən"
+        },
+        "stories": {
+          "title": "Gözəl Hekayələr",
+          "description": "Promi ilə həyəcanlı macəralara çıx"
+        },
+        "stars": {
+          "title": "Ulduz Qazan",
+          "description": "Ulduzlar topla və yeni səviyyələri aç"
+        }
       },
       "startButton": "Oynamağa Başla!",
       "ageNote": "Oxumaq və yazmaq bilən 8-14 yaşlı uşaqlar üçün ən uyğun",
@@ -1458,40 +1526,743 @@
       "next": "İrəli",
       "completeFirst": "Davam etmək üçün əvvəlcə fəaliyyəti tamamla"
     },
-    "map": { "title": "Dünya Xəritəsi", "subtitle": "Bir səviyyə seç və macərana başla!", "worldLevels": "{count} səviyyə", "levelNumber": "Səviyyə {number}", "locked": "Açmaq üçün əvvəlki səviyyəni tamamla" },
-    "worlds": { "1": { "title": "Başlanğıc Kəndi" }, "2": { "title": "Aydınlıq Qalası" }, "3": { "title": "Kontekst Mağaraları" }, "4": { "title": "Yaradıcılıq Kanyonu" }, "5": { "title": "Ustad Dağı" } },
-    "levels": {
-      "1_1_meet_promi": { "title": "Promi ilə Tanış Ol!", "description": "Robot dostunla salamlaş və AI-nin nə olduğunu öyrən" },
-      "1_2_first_words": { "title": "Promi-in İlk Sözləri", "description": "İlk promptunu yazaraq Promi-ə başa düşməyə kömək et" },
-      "1_3_being_clear": { "title": "Aydın Ol", "description": "Niyə aydın təlimatların daha yaxşı işlədiyini öyrən" },
-      "2_1_missing_details": { "title": "İtkin Detallar", "description": "Detalların niyə vacib olduğunu kəşf et" },
-      "2_2_who_and_what": { "title": "Kim və Nə", "description": "Personajlar və obyektlər əlavə et" },
-      "2_3_when_and_where": { "title": "Nə Vaxt və Harada", "description": "Vaxt və yer əlavə etməyi öyrən" },
-      "2_4_detail_detective": { "title": "Detal Detektivi", "description": "Detal əlavə etmə mütəxəssisi ol" },
-      "3_1_setting_the_scene": { "title": "Səhnəni Qurmaq", "description": "Kontekstin niyə kömək etdiyini öyrən" },
-      "3_2_show_dont_tell": { "title": "Göstər, Demə", "description": "İstədiyini göstərmək üçün nümunələr istifadə et" },
-      "3_3_format_finder": { "title": "Format Tapıcı", "description": "Siyahılar, hekayələr, şeirlər istə!" },
-      "3_4_context_champion": { "title": "Kontekst Çempionu", "description": "Bütün kontekst texnikalarını birləşdir" },
-      "4_1_pretend_time": { "title": "Rol Oynamaq Vaxtı!", "description": "Rol oynama promptlarını öyrən" },
-      "4_2_story_starters": { "title": "Hekayə Başlanğıcları", "description": "AI ilə möhtəşəm hekayələr yarat" },
-      "4_3_character_creator": { "title": "Personaj Yaradıcısı", "description": "AI-yə şəxsiyyət ver" },
-      "4_4_world_builder": { "title": "Dünya Qurucusu", "description": "Xəyali dünyalar yarat" },
-      "5_1_perfect_prompt": { "title": "Mükəmməl Prompt", "description": "Aydınlıq, detallar və konteksti birləşdir" },
-      "5_2_fix_it_up": { "title": "Düzəlt!", "description": "Zəif promptları tap və yaxşılaşdır" },
-      "5_3_prompt_remix": { "title": "Prompt Remiks", "description": "Fərqli nəticələr üçün promptları yenidən yaz" },
-      "5_4_graduation_day": { "title": "Məzuniyyət Günü", "description": "Son çağırış - Usta ol!" }
+    "map": {
+      "title": "Dünya Xəritəsi",
+      "subtitle": "Bir səviyyə seç və macərana başla!",
+      "worldLevels": "{count} səviyyə",
+      "levelNumber": "Səviyyə {number}",
+      "locked": "Açmaq üçün əvvəlki səviyyəni tamamla"
     },
-    "level": { "backToMap": "Xəritəyə Qayıt", "levelLabel": "Səviyyə {number}", "comingSoon": "Bu səviyyə tezliklə gəlir!", "previous": "Əvvəlki", "next": "Növbəti", "map": "Xəritə" },
-    "levelComplete": { "title": "Səviyyə Tamamlandı!", "nextLevel": "Növbəti Səviyyə", "backToMap": "Xəritəyə Qayıt", "allDone": "Xəritəyə Qayıt" },
-    "quiz": { "goodLabel": "Əla prompt!", "badLabel": "Ən yaxşısı deyil", "correct": "Düzdür!", "incorrect": "Yaxşı cəhd!", "tryAgain": "Yenidən cəhd et" },
-    "magicWords": { "title": "Sehrli sözləri sürüklə! ✨", "dragOrTap": "🎯 Sözləri sürüklə və ya toxun:", "check": "Yoxla!", "retry": "Yenidən", "correct": "düzgün", "tryAgain": "Yenidən cəhd et!" },
-    "dragDrop": { "title": "Promptu qur!", "instruction": "Hərəkət etmək üçün oxlardan istifadə et və ya iki parçaya toxun!", "result": "Nəticə", "check": "Yoxla!", "retry": "Yenidən", "success": "Mükəmməl! Əla prompt qurdun!", "almost": "Demək olar! Sıralamağa davam et.", "tapToSwap": "Dəyişdirmək üçün başqa parçaya toxun!" },
-    "promptParts": { "title": "Prompt Hissələrini Sırala!", "instruction": "Hər parçaya toxun, sonra növü seç!", "score": "Xal", "pickCategory": "Bu hansı növdür?", "success": "Bütün hissələri düzgün sıraladın!", "retry": "Yenidən cəhd et", "types": { "role": "Rol", "task": "Tapşırıq", "context": "Kontekst", "constraint": "Məhdudiyyət" } },
-    "exampleMatcher": { "title": "Nümunə Uyğunlaşdırıcı", "instruction": "Nümunəyə bax və sonra nə gəldiyini seç!", "pattern": "Nümunə:", "check": "Yoxla!", "retry": "Yenidən cəhd et", "correct": "Düzdür! 🎉", "tryAgain": "Tam deyil - nümunəyə yenidən bax!" },
-    "promptDoctor": { "title": "Prompt Həkimi", "health": "Prompt Sağlamlığı", "sick": "Xəstə Prompt", "healthy": "Sağlam Prompt!", "diagnose": "Düzəltmək üçün problemə toxun:", "success": "Prompt indi yaxşıdır!", "retry": "Yenidən başla" },
-    "stepByStep": { "title": "Addım-addım Düşün", "problem": "Problem:", "withoutMagic": "Sehrli sözlər olmadan:", "addMagicWords": "Sehrli Sözləri Əlavə Et!", "magicWordsActive": "Sehrli sözlər əlavə edildi!", "nextStep": "Növbəti Addımı Göstər", "withMagic": "Addım-addım düşünmə ilə:", "retry": "Yenidən cəhd et" },
-    "promptLab": { "title": "Prompt Laboratoriyası", "progress": "Təkmilləşdirmələr", "yourPrompt": "Sənin Promptun:", "aiSays": "AI Cavabı:", "addDetails": "Təkmilləşdirmə əlavə et:", "success": "Promptun indi çox spesifikdir!", "retry": "Yenidən başla" },
-    "wordPredictor": { "title": "AI Necə Düşünür", "instruction": "AI ən çox ehtimal olunan növbəti sözü təxmin edir. AI kimi düşünə bilərsən?", "aiThinks": "AI oxuyur:", "thinkingDefault": "Hmm, burada hansı söz ən məntiqli olardı?", "check": "Cavabımı yoxla!", "correct": "AI kimi düşünürsən!", "tryAgain": "Tam deyil! AI ən çox ehtimal olunan sözü seçir.", "retry": "Yenidən cəhd et" },
-    "settings": { "title": "Tənzimləmələr", "music": "Musiqi", "language": "Dil", "progress": "Tərəqqin", "stars": "Ulduzlar", "completed": "Tamamlandı", "resetTitle": "Tərəqqini Sıfırla", "resetButton": "Hamısını Sıfırla", "resetWarning": "Bu bütün ulduzları və tərəqqini siləcək. Əminsən?", "resetConfirm": "Bəli, Hamısını Sıfırla", "resetComplete": "Tərəqqi sıfırlandı! Yenidən yüklənir...", "cancel": "Ləğv et" }
+    "worlds": {
+      "1": {
+        "title": "Başlanğıc Kəndi"
+      },
+      "2": {
+        "title": "Aydınlıq Qalası"
+      },
+      "3": {
+        "title": "Kontekst Mağaraları"
+      },
+      "4": {
+        "title": "Yaradıcılıq Kanyonu"
+      },
+      "5": {
+        "title": "Ustad Dağı"
+      }
+    },
+    "levels": {
+      "1_1_meet_promi": {
+        "title": "Promi ilə Tanış Ol!",
+        "description": "Robot dostunla salamlaş və AI-nin nə olduğunu öyrən"
+      },
+      "1_2_first_words": {
+        "title": "Promi-in İlk Sözləri",
+        "description": "İlk promptunu yazaraq Promi-ə başa düşməyə kömək et"
+      },
+      "1_3_being_clear": {
+        "title": "Aydın Ol",
+        "description": "Niyə aydın təlimatların daha yaxşı işlədiyini öyrən"
+      },
+      "2_1_missing_details": {
+        "title": "İtkin Detallar",
+        "description": "Detalların niyə vacib olduğunu kəşf et"
+      },
+      "2_2_who_and_what": {
+        "title": "Kim və Nə",
+        "description": "Personajlar və obyektlər əlavə et"
+      },
+      "2_3_when_and_where": {
+        "title": "Nə Vaxt və Harada",
+        "description": "Vaxt və yer əlavə etməyi öyrən"
+      },
+      "2_4_detail_detective": {
+        "title": "Detal Detektivi",
+        "description": "Detal əlavə etmə mütəxəssisi ol"
+      },
+      "3_1_setting_the_scene": {
+        "title": "Səhnəni Qurmaq",
+        "description": "Kontekstin niyə kömək etdiyini öyrən"
+      },
+      "3_2_show_dont_tell": {
+        "title": "Göstər, Demə",
+        "description": "İstədiyini göstərmək üçün nümunələr istifadə et"
+      },
+      "3_3_format_finder": {
+        "title": "Format Tapıcı",
+        "description": "Siyahılar, hekayələr, şeirlər istə!"
+      },
+      "3_4_context_champion": {
+        "title": "Kontekst Çempionu",
+        "description": "Bütün kontekst texnikalarını birləşdir"
+      },
+      "4_1_pretend_time": {
+        "title": "Rol Oynamaq Vaxtı!",
+        "description": "Rol oynama promptlarını öyrən"
+      },
+      "4_2_story_starters": {
+        "title": "Hekayə Başlanğıcları",
+        "description": "AI ilə möhtəşəm hekayələr yarat"
+      },
+      "4_3_character_creator": {
+        "title": "Personaj Yaradıcısı",
+        "description": "AI-yə şəxsiyyət ver"
+      },
+      "4_4_world_builder": {
+        "title": "Dünya Qurucusu",
+        "description": "Xəyali dünyalar yarat"
+      },
+      "5_1_perfect_prompt": {
+        "title": "Mükəmməl Prompt",
+        "description": "Aydınlıq, detallar və konteksti birləşdir"
+      },
+      "5_2_fix_it_up": {
+        "title": "Düzəlt!",
+        "description": "Zəif promptları tap və yaxşılaşdır"
+      },
+      "5_3_prompt_remix": {
+        "title": "Prompt Remiks",
+        "description": "Fərqli nəticələr üçün promptları yenidən yaz"
+      },
+      "5_4_graduation_day": {
+        "title": "Məzuniyyət Günü",
+        "description": "Son çağırış - Usta ol!"
+      }
+    },
+    "level": {
+      "backToMap": "Xəritəyə Qayıt",
+      "levelLabel": "Səviyyə {number}",
+      "comingSoon": "Bu səviyyə tezliklə gəlir!",
+      "previous": "Əvvəlki",
+      "next": "Növbəti",
+      "map": "Xəritə"
+    },
+    "levelComplete": {
+      "title": "Səviyyə Tamamlandı!",
+      "nextLevel": "Növbəti Səviyyə",
+      "backToMap": "Xəritəyə Qayıt",
+      "allDone": "Xəritəyə Qayıt"
+    },
+    "quiz": {
+      "goodLabel": "Əla prompt!",
+      "badLabel": "Ən yaxşısı deyil",
+      "correct": "Düzdür!",
+      "incorrect": "Yaxşı cəhd!",
+      "tryAgain": "Yenidən cəhd et"
+    },
+    "magicWords": {
+      "title": "Sehrli sözləri sürüklə! ✨",
+      "dragOrTap": "🎯 Sözləri sürüklə və ya toxun:",
+      "check": "Yoxla!",
+      "retry": "Yenidən",
+      "correct": "düzgün",
+      "tryAgain": "Yenidən cəhd et!"
+    },
+    "dragDrop": {
+      "title": "Promptu qur!",
+      "instruction": "Hərəkət etmək üçün oxlardan istifadə et və ya iki parçaya toxun!",
+      "result": "Nəticə",
+      "check": "Yoxla!",
+      "retry": "Yenidən",
+      "success": "Mükəmməl! Əla prompt qurdun!",
+      "almost": "Demək olar! Sıralamağa davam et.",
+      "tapToSwap": "Dəyişdirmək üçün başqa parçaya toxun!"
+    },
+    "promptParts": {
+      "title": "Prompt Hissələrini Sırala!",
+      "instruction": "Hər parçaya toxun, sonra növü seç!",
+      "score": "Xal",
+      "pickCategory": "Bu hansı növdür?",
+      "success": "Bütün hissələri düzgün sıraladın!",
+      "retry": "Yenidən cəhd et",
+      "types": {
+        "role": "Rol",
+        "task": "Tapşırıq",
+        "context": "Kontekst",
+        "constraint": "Məhdudiyyət"
+      }
+    },
+    "exampleMatcher": {
+      "title": "Nümunə Uyğunlaşdırıcı",
+      "instruction": "Nümunəyə bax və sonra nə gəldiyini seç!",
+      "pattern": "Nümunə:",
+      "check": "Yoxla!",
+      "retry": "Yenidən cəhd et",
+      "correct": "Düzdür! 🎉",
+      "tryAgain": "Tam deyil - nümunəyə yenidən bax!"
+    },
+    "promptDoctor": {
+      "title": "Prompt Həkimi",
+      "health": "Prompt Sağlamlığı",
+      "sick": "Xəstə Prompt",
+      "healthy": "Sağlam Prompt!",
+      "diagnose": "Düzəltmək üçün problemə toxun:",
+      "success": "Prompt indi yaxşıdır!",
+      "retry": "Yenidən başla"
+    },
+    "stepByStep": {
+      "title": "Addım-addım Düşün",
+      "problem": "Problem:",
+      "withoutMagic": "Sehrli sözlər olmadan:",
+      "addMagicWords": "Sehrli Sözləri Əlavə Et!",
+      "magicWordsActive": "Sehrli sözlər əlavə edildi!",
+      "nextStep": "Növbəti Addımı Göstər",
+      "withMagic": "Addım-addım düşünmə ilə:",
+      "retry": "Yenidən cəhd et"
+    },
+    "promptLab": {
+      "title": "Prompt Laboratoriyası",
+      "progress": "Təkmilləşdirmələr",
+      "yourPrompt": "Sənin Promptun:",
+      "aiSays": "AI Cavabı:",
+      "addDetails": "Təkmilləşdirmə əlavə et:",
+      "success": "Promptun indi çox spesifikdir!",
+      "retry": "Yenidən başla"
+    },
+    "wordPredictor": {
+      "title": "AI Necə Düşünür",
+      "instruction": "AI ən çox ehtimal olunan növbəti sözü təxmin edir. AI kimi düşünə bilərsən?",
+      "aiThinks": "AI oxuyur:",
+      "thinkingDefault": "Hmm, burada hansı söz ən məntiqli olardı?",
+      "check": "Cavabımı yoxla!",
+      "correct": "AI kimi düşünürsən!",
+      "tryAgain": "Tam deyil! AI ən çox ehtimal olunan sözü seçir.",
+      "retry": "Yenidən cəhd et"
+    },
+    "settings": {
+      "title": "Tənzimləmələr",
+      "music": "Musiqi",
+      "language": "Dil",
+      "progress": "Tərəqqin",
+      "stars": "Ulduzlar",
+      "completed": "Tamamlandı",
+      "resetTitle": "Tərəqqini Sıfırla",
+      "resetButton": "Hamısını Sıfırla",
+      "resetWarning": "Bu bütün ulduzları və tərəqqini siləcək. Əminsən?",
+      "resetConfirm": "Bəli, Hamısını Sıfırla",
+      "resetComplete": "Tərəqqi sıfırlandı! Yenidən yüklənir...",
+      "cancel": "Ləğv et"
+    }
+  },
+  "book": {
+    "title": "İnteraktiv Prompting Kitabı",
+    "donate": "Layihəni dəstəkləyin",
+    "subtitle": "Aydın və Effektiv Promptlar Yaratmaq üçün İnteraktiv Bələdçi",
+    "metaTitle": "İnteraktiv Prompting Kitabı | AI Prompt Mühəndisliyi üçün Pulsuz Onlayn Bələdçi",
+    "metaDescription": "Bu pulsuz, interaktiv bələdçi ilə AI prompt mühəndisliyini mənimsəyin. ChatGPT promptları, düşüncə zənciri, az nümunə ilə öyrənmə və qabaqcıl texnikaları öyrənin. Real nümunələrlə 25+ fəsil.",
+    "interactiveGuideBy": "İnteraktiv Bələdçi",
+    "authorIntro": "Salam, mən <author>Fatih Kadir Akın</author>-am, GitHub-da populyar <repoLink>Awesome ChatGPT Prompts</repoLink> deposunun və <siteName>prompts.chat</siteName> saytının yaradıcısıyam.",
+    "bookDescription": "Bu hərtərəfli və interaktiv bələdçidə, cəlbedici və effektiv söhbətlər aparan AI promptları yaratmaq üçün ekspert strategiyaları kəşf edəcəksiniz. AI modellərinin necə işlədiyini anlamaqdan prompt zəncirləmə və agent sistemləri kimi qabaqcıl texnikalara qədər, bu kitab AI qarşılıqlı əlaqələrinizi növbəti səviyyəyə çatdırmaq üçün lazım olan alətləri təqdim edir.",
+    "whatYouWillLearn": "Nə öyrənəcəksiniz:",
+    "highlights": {
+      "understanding": "AI modellərinin promptları necə düşündüyünü və emal etdiyini başa düşmək",
+      "crafting": "Aydın, spesifik və effektiv promptlar yaratmaq",
+      "advanced": "Qabaqcıl texnikalar: düşüncə zənciri, az nümunə ilə öyrənmə və prompt zəncirləmə",
+      "interactive": "Birbaşa brauzerdə sınaya biləcəyiniz interaktiv nümunələr",
+      "realWorld": "Yazı, kodlaşdırma, təhsil və biznes üçün real dünya istifadə halları",
+      "future": "Promptinqin gələcəyi: agentlər və agent sistemləri"
+    },
+    "bookStructure": "Kitab Strukturu",
+    "structure": {
+      "introduction": "Giriş",
+      "part1": "Hissə 1: Əsaslar",
+      "part2": "Hissə 2: Texnikalar",
+      "part3": "Hissə 3: Qabaqcıl Strategiyalar",
+      "part4": "Hissə 4: Ən Yaxşı Təcrübələr",
+      "part5": "Hissə 5: İstifadə Halları",
+      "part6": "Hissə 6: Nəticə",
+      "chapters": "25 İnteraktiv Fəsil"
+    },
+    "startReading": "Oxumağa Başla",
+    "skipToChapter1": "1-ci Fəsilə Keç",
+    "continuousUpdate": "Bu kitab AI inkişaf etdikcə yeni texnikalar və anlayışlarla davamlı olaraq yenilənir.",
+    "partOfProject": "<repoLink>Awesome ChatGPT Prompts</repoLink> layihəsinin bir hissəsi. CC0 altında lisenziyalıdır.",
+    "kidsSection": {
+      "question": "Məktəb müəllimisiniz və ya valideynsiniz?",
+      "title": "Uşaqlar üçün Oynanıla Bilən Kitabımızı Sınayın! 🎮",
+      "description": "Uşaqlara (8-14 yaş) əyləncəli tapmacalar və hekayələr vasitəsilə AI ilə ünsiyyət qurmağı öyrədən interaktiv, oyun əsaslı macəra.",
+      "startPlaying": "Oynamağa Başla"
+    },
+    "chapter": {
+      "notFound": "Fəsil Tapılmadı",
+      "comingSoon": "Bu fəsil tezliklə gələcək.",
+      "previous": "Əvvəlki",
+      "next": "Növbəti"
+    },
+    "tableOfContents": "Mündəricat",
+    "awesomeChatGPTPrompts": "Awesome ChatGPT Prompts",
+    "search": {
+      "placeholder": "Fəsilləri axtar...",
+      "noResults": "Fəsil tapılmadı"
+    },
+    "bookmark": {
+      "add": "Bu fəsli əlfəcinlə",
+      "remove": "Əlfəcini sil",
+      "continueReading": "Qaldığınız yerdən davam edin",
+      "continue": "Davam et"
+    },
+    "parts": {
+      "introduction": "Giriş",
+      "foundations": "Əsaslar",
+      "techniques": "Texnikalar",
+      "advanced": "Qabaqcıl Strategiyalar",
+      "bestPractices": "Ən Yaxşı Təcrübələr",
+      "useCases": "İstifadə Halları",
+      "conclusion": "Nəticə"
+    },
+    "chapters": {
+      "00a-preface": "Ön Söz",
+      "00b-history": "Tarix",
+      "00c-introduction": "Giriş",
+      "01-understanding-ai-models": "AI Modellərini Anlamaq",
+      "02-anatomy-of-effective-prompt": "Effektiv Promptun Anatomiyası",
+      "03-core-prompting-principles": "Əsas Prompting Prinsipləri",
+      "04-role-based-prompting": "Rol Əsaslı Prompting",
+      "05-structured-output": "Strukturlaşdırılmış Çıxış",
+      "06-chain-of-thought": "Düşüncə Zənciri",
+      "07-few-shot-learning": "Az Nümunə ilə Öyrənmə",
+      "08-iterative-refinement": "İterativ Təkmilləşdirmə",
+      "09-json-yaml-prompting": "JSON və YAML Prompting",
+      "10-system-prompts-personas": "Sistem Promptları və Personalar",
+      "11-prompt-chaining": "Prompt Zəncirləmə",
+      "12-handling-edge-cases": "Kənar Hallarla Məşğul Olmaq",
+      "13-multimodal-prompting": "Multimodal Prompting",
+      "14-context-engineering": "Kontekst Mühəndisliyi",
+      "25-agents-and-skills": "Agentlər və Bacarıqlar",
+      "15-common-pitfalls": "Ümumi Səhvlər",
+      "16-ethics-responsible-use": "Etika və Məsuliyyətli İstifadə",
+      "17-prompt-optimization": "Prompt Optimallaşdırması",
+      "18-writing-content": "Yazı və Məzmun",
+      "19-programming-development": "Proqramlaşdırma və İnkişaf",
+      "20-education-learning": "Təhsil və Öyrənmə",
+      "21-business-productivity": "Biznes və Məhsuldarlıq",
+      "22-creative-arts": "Yaradıcı Sənətlər",
+      "23-research-analysis": "Araşdırma və Analiz",
+      "24-future-of-prompting": "Promptinqin Gələcəyi"
+    },
+    "chapterDescriptions": {
+      "00a-preface": "Müəllifdən şəxsi qeyd",
+      "00b-history": "Awesome ChatGPT Prompts hekayəsi",
+      "00c-introduction": "Prompt mühəndisliyi nədir və niyə vacibdir",
+      "01-understanding-ai-models": "Böyük dil modelləri necə işləyir",
+      "02-anatomy-of-effective-prompt": "Promptları işlək edən komponentlər",
+      "03-core-prompting-principles": "Daha yaxşı promptlar üçün əsas prinsiplər",
+      "04-role-based-prompting": "Persona və rollardan effektiv istifadə",
+      "05-structured-output": "Ardıcıl, formatlanmış cavablar almaq",
+      "06-chain-of-thought": "Mürəkkəb tapşırıqlar üçün addım-addım düşünmə",
+      "07-few-shot-learning": "Nümunə ilə öyrətmək",
+      "08-iterative-refinement": "İterasiya ilə promptları təkmilləşdirmək",
+      "09-json-yaml-prompting": "Promptlarda strukturlaşdırılmış məlumat formatları",
+      "10-system-prompts-personas": "Ardıcıl AI şəxsiyyətləri yaratmaq",
+      "11-prompt-chaining": "Çoxlu promptları birləşdirmək",
+      "12-handling-edge-cases": "Gözlənilməz girişlərlə məşğul olmaq",
+      "13-multimodal-prompting": "Şəkillər, audio və video ilə işləmək",
+      "14-context-engineering": "RAG, embeddinglər, funksiya çağırışı və MCP",
+      "25-agents-and-skills": "Təkrar istifadə edilə bilən bacarıq paketləri ilə AI agentləri qurmaq",
+      "15-common-pitfalls": "Qarşısı alınmalı səhvlər",
+      "16-ethics-responsible-use": "AI-da etik mülahizələr",
+      "17-prompt-optimization": "Promptları test etmək və təkmilləşdirmək",
+      "18-writing-content": "Məzmun yaratma və kopyaraytinq",
+      "19-programming-development": "Kod yaratma və xəta ayıklama",
+      "20-education-learning": "Tədris və öyrənmə tətbiqləri",
+      "21-business-productivity": "Peşəkar və iş yeri tətbiqləri",
+      "22-creative-arts": "Bədii və yaradıcı tətbiqlər",
+      "23-research-analysis": "Məlumat analizi və araşdırma tapşırıqları",
+      "24-future-of-prompting": "Yüksələn tendensiyalar və gələcəyə baxış"
+    },
+    "interactive": {
+      "tryIt": "Özünüz Sınayın",
+      "copy": "Kopyala",
+      "copied": "Kopyalandı!",
+      "correct": "Düzdür!",
+      "notQuite": "Tam deyil.",
+      "nextTokenPrediction": "Növbəti Token Proqnozu",
+      "watchHowAIPredicts": "AI-ın hər addımda növbəti tokeni necə proqnozlaşdırdığını izləyin",
+      "replay": "Yenidən Oynat",
+      "playing": "Oynatılır...",
+      "play": "Oynat",
+      "pressPlayToStart": "Başlamaq üçün Oynat düyməsinə basın...",
+      "completingCurrentToken": "Cari token tamamlanır:",
+      "top3PredictedNextTokens": "Ən Yüksək 3 Proqnozlaşdırılan Növbəti Token:",
+      "howItWorks": "Necə işləyir:",
+      "howItWorksExplanation": "Hər addımda model bütün mümkün növbəti tokenlər üçün ehtimalları hesablayır (~50,000+). Ən yüksək ehtimallı token seçilir, sonra proses təkrarlanır.",
+      "tokenizerDemo": "Tokenizer Demosu",
+      "seeHowTextIsSplit": "Mətnin tokenlərə necə bölündüyünə baxın",
+      "enterText": "Mətn daxil edin:",
+      "tokens": "token",
+      "tryExamples": "Sınayın: \"İnanılmaz\", \"ChatGPT əladır\" və ya öz mətnınızı yazın",
+      "contextWindowVisualizer": "Kontekst Pəncərəsi Vizualizatoru",
+      "understandHowContextIsConsumed": "Kontekstin necə istehlak edildiyini anlayın",
+      "contextWindow": "Kontekst Pəncərəsi",
+      "remaining": "qalır",
+      "prompt": "Prompt",
+      "response": "Cavab",
+      "yourPrompt": "Sizin Promptunuz",
+      "aiResponse": "AI Cavabı",
+      "contextOverflow": "Kontekst daşması!",
+      "contextOverflowMessage": "Promptunuz + cavabınız kontekst pəncərəsini aşır. Model kəsəcək və ya uğursuz olacaq. Prompt uzunluğunu azaltmağa və ya daha qısa cavablar istəməyə çalışın.",
+      "tipLabel": "İpucu:",
+      "contextTip": "Həm promptunuz, HƏM də AI-ın cavabı kontekst pəncərəsinə sığmalıdır. Daha uzun promptlar cavablar üçün daha az yer buraxır. Vacib məlumatları promptunuzun əvvəlində yerləşdirin.",
+      "temperatureDemo": "Temperatur Demosu",
+      "seeHowRandomnessAffects": "Təsadüfiliyin çıxışlara necə təsir etdiyinə baxın",
+      "temperature": "Temperatur",
+      "deterministic": "Deterministik",
+      "balanced": "Balanslaşdırılmış",
+      "creative": "Yaradıcı",
+      "veryCreative": "Çox Yaradıcı",
+      "focused": "Fokuslanmış",
+      "random": "Təsadüfi",
+      "possibleResponsesAtThisTemp": "Bu temperaturda mümkün cavablar:",
+      "useLowTemperature": "Aşağı temperatur istifadə edin",
+      "useHighTemperature": "Yüksək temperatur istifadə edin",
+      "forFactualAnswers": "faktiki, ardıcıl cavablar üçün.",
+      "forCreativeWriting": "yaradıcı yazı və beyin fırtınası üçün.",
+      "structuredOutputDemo": "Strukturlaşdırılmış Çıxış Demosu",
+      "seeTheDifferenceStructureMakes": "Strukturun yaratdığı fərqə baxın",
+      "unstructured": "Strukturlaşdırılmamış",
+      "output": "Çıxış:",
+      "youCan": "Edə bilərsiniz:",
+      "parseProgrammatically": "Proqramlı şəkildə analiz et",
+      "compareAcrossQueries": "Sorğular arasında müqayisə et",
+      "integrateIntoWorkflows": "İş axınlarına inteqrasiya et",
+      "validateForCompleteness": "Tamlıq üçün doğrula",
+      "parseProgrammaticallyLabel": "Proqramlı analiz:",
+      "complexRegexRequired": "Mürəkkəb regex və ya NLP tələb olunur",
+      "unreliableBreaksWithChanges": "Etibarsız, kiçik söz dəyişiklikləri ilə pozulur",
+      "simpleAndReliable": "Sadə və etibarlı",
+      "parseableWithMarkdown": "Markdown kitabxanası ilə analiz edilə bilər",
+      "fewShotLearningDemo": "Az Nümunə ilə Öyrənmə Demosu",
+      "seeHowExamplesImproveAccuracy": "Nümunələrin dəqiqliyi necə artırdığına baxın",
+      "numberOfExamples": "Nümunə sayı",
+      "zeroShot": "Sıfır nümunə",
+      "oneShot": "Bir nümunə",
+      "twoShot": "İki nümunə",
+      "threeShot": "Üç nümunə",
+      "examplesProvided": "Verilən nümunələr:",
+      "testInput": "Test girişi:",
+      "modelPrediction": "Model proqnozu:",
+      "confidence": "Etibar:",
+      "expected": "Gözlənilən:",
+      "formatComparison": "Format Müqayisəsi",
+      "sameDataDifferentFormats": "Eyni məlumat, fərqli formatlar",
+      "defineStructureWithTypeScript": "TypeScript interfeysləri ilə strukturu müəyyənləşdirin",
+      "machineReadableStrictSyntax": "Maşın tərəfindən oxuna bilən, sərt sintaksis, API-lər üçün əla",
+      "humanReadableSupportsComments": "İnsan tərəfindən oxuna bilən, şərhləri dəstəkləyir, konfiqurasiya üçün əla",
+      "defineSchema": "Sxem müəyyənləşdir",
+      "apisAndParsing": "API-lər və analiz",
+      "configFiles": "Konfiqurasiya faylları",
+      "iterativeRefinementDemo": "İterativ Təkmilləşdirmə Demosu",
+      "watchAPromptEvolve": "Bir promptun inkişafını izləyin",
+      "pause": "Pauza",
+      "versionXOfY": "Versiya {current} / {total}",
+      "newInThisVersion": "Bu versiyada yeni",
+      "quality": "Keyfiyyət",
+      "issue": "Problem:",
+      "success": "Uğur",
+      "successMessage": "Prompt indi yüksək keyfiyyətli, ardıcıl çıxış istehsal edir.",
+      "apiCostCalculator": "API Xərc Kalkulyatoru",
+      "inputTokens": "Giriş Tokenləri (hər sorğu üçün)",
+      "outputTokens": "Çıxış Tokenləri (hər sorğu üçün)",
+      "inputPrice": "Giriş Qiyməti (1M token üçün $)",
+      "outputPrice": "Çıxış Qiyməti (1M token üçün $)",
+      "requestsPerDay": "Gündəlik Sorğular",
+      "perRequest": "Hər Sorğu",
+      "dailyCost": "Gündəlik Xərc",
+      "monthlyCost": "Aylıq Xərc",
+      "textToImageBuildPrompt": "Mətndən Şəkilə: Promptunuzu Qurun",
+      "selectOptionsToBuiltImagePrompt": "Şəkil promptu qurmaq üçün hər kateqoriyadan seçimlər edin:",
+      "generatedPrompt": "Yaradılan Prompt",
+      "simulateDiffusionProcess": "Diffuziya Prosesini Simulyasiya Et",
+      "diffusionStep1": "Təsadüfi səs-küydən başla",
+      "diffusionStep2": "Kobud formaları aşkarla",
+      "diffusionStep3": "Əsas rənglər və formalar əlavə et",
+      "diffusionStep4": "Detalları təkmilləşdir",
+      "diffusionStep5": "Son şəkil",
+      "diffusionExplanation": "Real diffuziya modelləri minlərlə addım işlədir, tədricən səs-küyü aradan qaldırır, nəhayət tutarlı bir şəkil ortaya çıxır.",
+      "textToVideoBuildPrompt": "Mətndən Videoya: Promptunuzu Qurun",
+      "videoPromptsNeed": "Video promptlarına hərəkət, kamera işi və zamanlama lazımdır:",
+      "playAnimation": "Animasiyanı Oynat",
+      "stop": "Dayandır",
+      "frame": "Kadr:",
+      "consistency": "Ardıcıllıq:",
+      "consistencyDesc": "Mövzu kadrlar boyunca eyni qalır",
+      "motion": "Hərəkət:",
+      "motionDesc": "Mövqe zamanla hamar şəkildə dəyişir",
+      "physics": "Fizika:",
+      "physicsDesc": "Hərəkət təbii qanunlara əməl edir",
+      "simplifiedAnimationPreview": "Sadələşdirilmiş animasiya önizləməsi",
+      "videoModelExplanation": "Real video modelləri fotorealistik detal və ardıcıl mövzularla saniyədə 24-60 kadr yaradır.",
+      "embeddingsVisualization": "Embeddinglerin Vizualizasiyası",
+      "clickWordToSeeVector": "Vektorunu və digər sözlərlə oxşarlığını görmək üçün bir sözə klikləyin:",
+      "vector": "vektor",
+      "similarityTo": "Oxşarlıq:",
+      "embeddingsExplanation": "Oxşar mənalı sözlər (məsələn, \"xoşbəxt\" və \"məmnun\") oxşar vektorlara malikdir və yüksək oxşarlıq balları alır.",
+      "canDoWell": "Yaxşı Edə Bilər",
+      "cannotDo": "Edə Bilməz",
+      "promptBuilder": "Prompt Qurucusu",
+      "buildYourPromptStepByStep": "Promptunuzu addım-addım qurun",
+      "pleaseAddTask": "Zəhmət olmasa promptunuza ən azı bir tapşırıq əlavə edin",
+      "rateLimitReached": "Limit çatdı. Yenidən cəhd edin:",
+      "orSignInForMore": "və ya daha çox üçün daxil olun.",
+      "failedToRunPrompt": "Prompt işlədilə bilmədi",
+      "runWithAI": "AI ilə İşlət",
+      "failedToConnectApi": "API-yə qoşulmaq alınmadı",
+      "day": "gün",
+      "promptAnalyzer": "Prompt Analizatoru",
+      "getAiFeedbackOnPrompt": "Promptunuz haqqında AI rəyi alın",
+      "pasteOrWritePromptHere": "Promptunuzu bura yapışdırın və ya yazın...",
+      "analyze": "Analiz Et",
+      "pleaseEnterPromptToAnalyze": "Zəhmət olmasa analiz etmək üçün prompt daxil edin",
+      "failedToAnalyzePrompt": "Prompt analiz edilə bilmədi",
+      "clarity": "Aydınlıq",
+      "specificity": "Spesifiklik",
+      "missingElements": "Çatışmayan Elementlər",
+      "suggestions": "Təkliflər",
+      "improvedVersion": "Təkmilləşdirilmiş Versiya",
+      "summarizationStrategies": "Xülasələşdirmə Strategiyaları",
+      "originalConversation": "Orijinal Söhbət",
+      "after": "Sonra:",
+      "summary": "Xülasə",
+      "keptMessages": "Saxlanılan Mesajlar",
+      "saved": "Qənaət:",
+      "part": "Hissə",
+      "demoExamples": {
+        "tokenPrediction": {
+          "tokens": [
+            "Fransa",
+            "nın",
+            " paytaxt",
+            "ı",
+            " Paris",
+            "dir",
+            "."
+          ],
+          "fullText": "Fransanın paytaxtı Parisdir."
+        },
+        "tokenizer": {
+          "default": "example1",
+          "samples": {
+            "example1": {
+              "text": "Salam dünya!",
+              "tokens": [
+                "Sa",
+                "lam",
+                " dünya",
+                "!"
+              ]
+            },
+            "example2": {
+              "text": "Bakı paytaxt",
+              "tokens": [
+                "Ba",
+                "kı",
+                " pay",
+                "taxt"
+              ]
+            },
+            "example3": {
+              "text": "Süni intellekt əladır",
+              "tokens": [
+                "Sü",
+                "ni",
+                " in",
+                "tel",
+                "lekt",
+                " əla",
+                "dır"
+              ]
+            },
+            "example4": {
+              "text": "Xəzər dənizi",
+              "tokens": [
+                "Xə",
+                "zər",
+                " də",
+                "ni",
+                "zi"
+              ]
+            },
+            "example5": {
+              "text": "Prompt mühəndisliyi",
+              "tokens": [
+                "Prom",
+                "pt",
+                " mühən",
+                "dis",
+                "liyi"
+              ]
+            }
+          },
+          "tryExamples": "Nümunələri sınayın və ya öz mətninizi yazın"
+        },
+        "temperature": {
+          "prompt": "Fransanın paytaxtı hansıdır?",
+          "lowTemp": [
+            "Fransanın paytaxtı Parisdir.",
+            "Fransanın paytaxtı Parisdir.",
+            "Fransanın paytaxtı Parisdir."
+          ],
+          "mediumLowTemp": [
+            "Fransanın paytaxtı Parisdir.",
+            "Paris Fransanın paytaxtıdır.",
+            "Fransanın paytaxtı Paris, böyük bir Avropa şəhəridir."
+          ],
+          "mediumHighTemp": [
+            "Paris Fransanın paytaxtı kimi xidmət edir.",
+            "Fransanın paytaxtı Eyfel qülləsinin evi olan Parisdir.",
+            "Fransanın paytaxtı tarixi və romantik Paris şəhəridir."
+          ],
+          "highTemp": [
+            "İşıq Şəhəri Paris, Fransanın möhtəşəm paytaxtı olaraq ucalır!",
+            "Fransanın romantik paytaxtı cazibədar Paris şəhərindən başqa heç nə deyil.",
+            "Fransanın ürəyi sevimli sənət və mədəniyyət paytaxtı Parisdə döyünür."
+          ]
+        },
+        "fewShot": {
+          "examples": [
+            {
+              "input": "Bu məhsulu çox sevirəm!",
+              "output": "Pozitiv"
+            },
+            {
+              "input": "Dəhşətli təcrübə, pul itkisi",
+              "output": "Neqativ"
+            },
+            {
+              "input": "Yaxşıdır, xüsusi bir şey yoxdur",
+              "output": "Neytral"
+            }
+          ],
+          "testCase": {
+            "input": "Keyfiyyət əladır amma çatdırılma yavaşdır",
+            "expected": "Qarışıq"
+          },
+          "labels": {
+            "positive": "Pozitiv",
+            "negative": "Neqativ",
+            "neutral": "Neytral",
+            "mixed": "Qarışıq"
+          }
+        }
+      },
+      "promptChallenge": "Prompt Çağırışı",
+      "yourTask": "Tapşırığınız:",
+      "yourPromptWillBeScoredOn": "Promptunuz bunlara görə qiymətləndiriləcək:",
+      "startChallenge": "Çağırışa Başla",
+      "writeYourPromptHere": "Promptunuzu bura yazın...",
+      "points": "xal",
+      "hints": "İpucları",
+      "hintsUsed": "{used}/{total} istifadə edildi, hər biri -5 xal",
+      "revealNextHint": "Növbəti İpucunu Göstər (-5 xal)",
+      "submitForScoring": "Qiymətləndirmə üçün Göndər",
+      "aiCallsRemaining": "Qalan AI çağırışları",
+      "excellent": "🎉 Əla!",
+      "goodEffort": "👍 Yaxşı cəhd!",
+      "keepPracticing": "Məşq etməyə davam edin!",
+      "criteriaBreakdown": "Meyar Bölgüsü:",
+      "suggestionsForImprovement": "Təkmilləşdirmə Təklifləri:",
+      "exampleSolution": "Nümunə Həll",
+      "hide": "Gizlət",
+      "show": "Göstər",
+      "improveThisPrompt": "Bu Promptu Təkmilləşdir",
+      "improveThisPromptTask": "Daha yaxşı nəticələr almaq üçün bu promptu təkmilləşdirin",
+      "improvePromptTask": "Daha yaxşı nəticələr almaq üçün bu promptu təkmilləşdirin",
+      "originalWeakPrompt": "Orijinal (Zəif) Prompt",
+      "yourImprovedVersion": "Sizin Təkmilləşdirilmiş Versiyanız",
+      "compareWithAI": "AI ilə Müqayisə Et",
+      "reset": "Sıfırla",
+      "showIdealSolution": "İdeal Həlli Göstər",
+      "hideIdealSolution": "İdeal Həlli Gizlət",
+      "idealSolution": "İdeal Həll",
+      "yourVersionBetter": "🎉 Sizin versiyanız daha yaxşıdır!",
+      "yourVersionIsBetter": "🎉 Sizin versiyanız daha yaxşıdır!",
+      "keepImproving": "Orijinal hələ də daha yaxşı ola bilər. Təkmilləşdirməyə davam edin!",
+      "originalMightBeBetter": "Orijinal hələ də daha yaxşı ola bilər. Təkmilləşdirməyə davam edin!",
+      "keyDifferences": "Əsas Fərqlər:",
+      "beginner": "başlanğıc",
+      "intermediate": "orta",
+      "advanced": "qabaqcıl",
+      "youllHaveTime": "Bu çağırışı tamamlamaq üçün {time} vaxtınız olacaq.",
+      "takeYourTime": "Vaxtınızı ayırın və ən yaxşı promptu hazırlayın.",
+      "pleaseWritePromptBeforeSubmitting": "Zəhmət olmasa göndərməzdən əvvəl prompt yazın",
+      "fillInTheBlanks": "Boşluqları Doldurun",
+      "perfect": "🎉 Mükəmməl!",
+      "ofCorrect": "{score} / {total} düzgün",
+      "correctAnswer": "Düzgün cavab:",
+      "checking": "Yoxlanılır...",
+      "checkAnswers": "Cavabları Yoxla",
+      "tryAgain": "Yenidən Cəhd Et",
+      "aiPoweredValidation": "AI ilə semantik doğrulama",
+      "hintForBlank": "İpucu:",
+      "wellStructuredPrompt": "🎉 Yaxşı strukturlaşdırılmış prompt!",
+      "consistencyIssuesFound": "Bəzi ardıcıllıq problemləri tapıldı",
+      "issues": "Problemlər:",
+      "aiValidationFailed": "AI doğrulaması uğursuz oldu. Yerli doğrulama istifadə edilir.",
+      "aiCheckFailed": "AI yoxlaması uğursuz oldu. Zəhmət olmasa yenidən cəhd edin.",
+      "checklist": "Yoxlama Siyahısı",
+      "complete": "tamamlandı",
+      "allDoneGreatWork": "🎉 Hamısı tamamlandı! Əla iş!",
+      "debugThisPrompt": "Bu Promptu Düzəldin",
+      "hideHint": "İpucunu gizlət",
+      "showHint": "İpucunu göstər",
+      "thePrompt": "Prompt:",
+      "theOutputProblematic": "Çıxış (problemli):",
+      "whatsWrongWithThisPrompt": "Bu promptda nə səhvdir?",
+      "jailbreakAttackSimulator": "Jailbreak Hücum Simulyatoru",
+      "selectAttackType": "Necə işlədiyini görmək və AI-ın müdafiə edib-etmədiyini test etmək üçün hücum növü seçin:",
+      "systemPromptDefense": "Sistem Promptu (Müdafiə)",
+      "attackAttempt": "Hücum Cəhdi",
+      "whatThisAttackDoes": "Bu hücum nə edir:",
+      "testJailbreakDefense": "Jailbreak Müdafiəsini Test Et",
+      "systemPromptLabel": "SİSTEM PROMPTU",
+      "userAttemptsJailbreak": "İSTİFADƏÇİ JAİLBREAK CƏHDİ EDİR",
+      "sequentialChain": "Ardıcıl Zəncir",
+      "parallelChain": "Paralel Zəncir",
+      "conditionalChain": "Şərti Zəncir",
+      "iterativeChain": "İterativ Zəncir",
+      "running": "İşləyir...",
+      "run": "İşlət",
+      "outputLabel": "Çıxış",
+      "skippedConditionNotMet": "Atlandı - şərt ödənilmədi",
+      "iterationOf": "İterasiya {current} / {total}",
+      "previousOutputAsInput": "Əvvəlki çıxış giriş kimi",
+      "loopUntilQualityMet": "Keyfiyyət həddinə çatana qədər dövr et",
+      "chainErrorHandlingDemo": "Zəncir Xəta İdarəetmə Demosu",
+      "attempt": "Cəhd",
+      "retryingWithFeedback": "Xəta rəyi ilə yenidən cəhd edilir...",
+      "switchingToFallback": "Ehtiyat yanaşmaya keçilir...",
+      "failed": "Uğursuz",
+      "retry": "Yenidən Cəhd",
+      "fallback": "Ehtiyat",
+      "contextPlayground": "Kontekst Oyun Meydanı",
+      "toggleContextBlocks": "Kontekst bloklarını açın/bağlayın və birləşdirmələrini izləyin. Token sayına diqqət yetirin!",
+      "overContextLimit": "Kontekst limitini aşdı! Bəzi məzmun kəsiləcək.",
+      "enableContextBlocksToBuild": "Prompt qurmaq üçün bəzi kontekst bloklarını aktiv edin",
+      "testContext": "Konteksti Test Et"
+    }
+  },
+  "userExamples": {
+    "addMyExample": "Nümunəmi Əlavə Et",
+    "addExampleTitle": "Nümunənizi Əlavə Edin",
+    "addExampleDescriptionImage": "Bu prompt ilə yaratdığınız şəkli paylaşın.",
+    "addExampleDescriptionVideo": "Bu prompt ilə yaratdığınız videonu paylaşın.",
+    "imageUrl": "Şəkil URL",
+    "videoUrl": "Video URL",
+    "imagePreview": "Şəkil Önizləməsi",
+    "videoPreview": "Video Önizləməsi",
+    "urlTab": "URL",
+    "uploadTab": "Yüklə",
+    "clickToUpload": "Şəkil yükləmək üçün klikləyin",
+    "clickToUploadVideo": "Video yükləmək üçün klikləyin",
+    "uploading": "Yüklənir...",
+    "maxFileSize": "Maksimum 4MB (JPEG, PNG, GIF, WebP)",
+    "fileTooLarge": "Fayl çox böyükdür. Maksimum ölçü 4MB-dır.",
+    "invalidFileType": "Yanlış fayl növü. Yalnız JPEG, PNG, GIF və WebP icazəlidir.",
+    "invalidVideoType": "Yanlış fayl növü. Yalnız MP4 videolar icazəlidir.",
+    "commentOptional": "Şərh (isteğe bağlı)",
+    "commentPlaceholder": "Yaradıcılığınızı təsvir edin və ya məsləhətlər paylaşın...",
+    "cancel": "Ləğv et",
+    "submit": "Göndər",
+    "communityExamples": "İcma Nümunələri",
+    "userExample": "İstifadəçi nümunəsi"
   }
 }

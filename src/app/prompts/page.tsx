@@ -116,7 +116,27 @@ function getCachedPrompts(
               },
             },
             _count: {
-              select: { votes: true, contributors: true, outgoingConnections: true, incomingConnections: true },
+              select: {
+                votes: true,
+                contributors: true,
+                outgoingConnections: { where: { label: { not: "related" } } },
+                incomingConnections: { where: { label: { not: "related" } } },
+              },
+            },
+            userExamples: {
+              take: 5,
+              orderBy: { createdAt: "desc" },
+              select: {
+                id: true,
+                mediaUrl: true,
+                user: {
+                  select: {
+                    username: true,
+                    name: true,
+                    avatar: true,
+                  },
+                },
+              },
             },
           },
         }),

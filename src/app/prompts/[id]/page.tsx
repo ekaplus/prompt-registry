@@ -22,7 +22,7 @@ import { VersionCompareModal } from "@/components/prompts/version-compare-modal"
 import { VersionCompareButton } from "@/components/prompts/version-compare-button";
 import { FeaturePromptButton } from "@/components/prompts/feature-prompt-button";
 import { UnlistPromptButton } from "@/components/prompts/unlist-prompt-button";
-import { MediaPreview } from "@/components/prompts/media-preview";
+import { UserExamplesSection } from "@/components/prompts/user-examples-section";
 import { DelistBanner } from "@/components/prompts/delist-banner";
 import { RestorePromptButton } from "@/components/prompts/restore-prompt-button";
 import { CommentSection } from "@/components/comments";
@@ -206,6 +206,17 @@ export default async function PromptPage({ params }: PromptPageProps) {
   const relatedPrompts = relatedConnections
     .map((conn) => conn.target)
     .filter((p) => !p.isPrivate && !p.isUnlisted && !p.deletedAt);
+
+  // Check if prompt has flow connections (previous/next, not "related")
+  const flowConnectionCount = await db.promptConnection.count({
+    where: {
+      OR: [
+        { sourceId: id, label: { not: "related" } },
+        { targetId: id, label: { not: "related" } },
+      ],
+    },
+  });
+  const hasFlowConnections = flowConnectionCount > 0;
 
   if (!prompt) {
     notFound();
@@ -524,12 +535,16 @@ export default async function PromptPage({ params }: PromptPageProps) {
         </div>
 
         <TabsContent value="content" className="space-y-4 mt-0">
-          {/* Media Preview (for image/video prompts) */}
+          {/* Media Preview with User Examples (for image/video prompts) */}
           {prompt.mediaUrl && (
-            <MediaPreview 
+            <UserExamplesSection 
               mediaUrl={prompt.mediaUrl} 
               title={prompt.title} 
-              type={prompt.type} 
+              type={prompt.type}
+              promptId={prompt.id}
+              isLoggedIn={!!session?.user}
+              currentUserId={session?.user?.id}
+              isAdmin={isAdmin}
             />
           )}
 
@@ -656,6 +671,8 @@ export default async function PromptPage({ params }: PromptPageProps) {
               isLoggedIn={!!session?.user}
               currentUserId={session?.user?.id}
               isAdmin={isAdmin}
+              workflowLink={(prompt as unknown as { workflowLink?: string | null }).workflowLink}
+              hasFlowConnections={hasFlowConnections}
             />
           )}
 

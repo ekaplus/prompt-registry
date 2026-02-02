@@ -141,6 +141,10 @@
     "mcpCommandPlaceholder": "npx -y @mcp/server-name",
     "mcpToolsPlaceholder": "tool1, tool2",
     "add": "追加",
+    "workflowLink": "ワークフローリンク",
+    "workflowLinkDescription": "ユーザーがこのワークフローをテストできるURL",
+    "workflowLinkCreateNote": "まずプロンプトを保存し、次に接続されたプロンプトを追加してこのフィールドを有効にしてください。",
+    "workflowLinkPlaceholder": "https://example.com/workflow-demo",
     "advancedOptions": "詳細オプション",
     "searchContributors": "ユーザー名で検索...",
     "noUsersFound": "ユーザーが見つかりません",
@@ -837,6 +841,32 @@
     "profileUrl": "プロフィールURL",
     "email": "メールアドレス",
     "emailCannotChange": "メールアドレスは変更できません",
+    "bio": "自己紹介",
+    "bioPlaceholder": "自己紹介を入力してください...",
+    "bioCharCount": "{count}/250",
+    "customLinks": "リンク",
+    "customLinksDescription": "SNSやウェブサイトへのリンクを追加",
+    "addLink": "リンクを追加",
+    "linkType": "種類",
+    "linkUrl": "URL",
+    "linkLabel": "ラベル（任意）",
+    "linkLabelPlaceholder": "カスタムラベル",
+    "removeLink": "削除",
+    "maxLinksReached": "最大5つのリンクまで",
+    "invalidUrl": "有効なURLを入力してください",
+    "linkTypes": {
+      "website": "ウェブサイト",
+      "github": "GitHub",
+      "twitter": "X (Twitter)",
+      "linkedin": "LinkedIn",
+      "instagram": "Instagram",
+      "youtube": "YouTube",
+      "twitch": "Twitch",
+      "discord": "Discord",
+      "mastodon": "Mastodon",
+      "bluesky": "Bluesky",
+      "sponsor": "スポンサー"
+    },
     "saveChanges": "変更を保存",
     "profileUpdated": "プロフィールを更新しました",
     "usernameTaken": "このユーザー名は既に使用されています"
@@ -879,7 +909,7 @@
   "homepage": {
     "heroTitle": "AIプロンプトの自由な",
     "heroSubtitle": "ソーシャルプラットフォーム",
-    "heroDescription": "コミュニティからプロンプトを共有、発見、収集。無料でオープンソース — 完全なプライバシーで組織向けにセルフホスト。",
+    "heroDescription": "プロンプトはすべての生成AIの基盤です。コミュニティから共有、発見、収集しましょう。無料でオープンソース — 完全なプライバシーでセルフホスト。",
     "heroFeature1": "無料 & オープンソース",
     "heroFeature2": "プライバシーのためセルフホスト",
     "heroFeature3": "チーム＆組織向け",
@@ -1120,6 +1150,14 @@
     "terms": "利用規約",
     "support": "サポート"
   },
+  "cookies": {
+    "message": "分析のためにCookieを使用しています。",
+    "accept": "同意",
+    "reject": "拒否",
+    "confirmMessage": "本当によろしいですか？分析は改善に役立ちます。このアプリは完全にオープンソースです。",
+    "nevermind": "キャンセル",
+    "confirmReject": "はい、拒否します"
+  },
   "support": {
     "title": "サポート",
     "description": "よくある質問への回答を見つけるか、コミュニティからサポートを受けてください。",
@@ -1196,8 +1234,8 @@
   },
   "connectedPrompts": {
     "title": "プロンプトフロー",
-    "description": "一部のプロンプトは複数ステップのワークフローとして機能します。プロンプトを接続してシーケンスを作成しましょう。",
     "addPromptFlow": "このプロンプトには次のステップがあります",
+    "testWorkflow": "ワークフローを実行",
     "addPrevious": "前を追加",
     "addNext": "次を追加",
     "addPreviousTitle": "前のプロンプトを追加",
@@ -1221,7 +1259,19 @@
     "connectionAdded": "接続が正常に追加されました",
     "connectionDeleted": "接続が削除されました",
     "deleteFailed": "接続の削除に失敗しました",
-    "noResults": "プロンプトが見つかりません"
+    "noResults": "プロンプトが見つかりません",
+    "outputText": "テキスト",
+    "outputImage": "画像",
+    "outputVideo": "動画",
+    "outputAudio": "音声",
+    "outputStructured": "構造化",
+    "outputSkill": "スキル",
+    "inputImage": "画像",
+    "inputVideo": "動画",
+    "inputDocument": "ドキュメント",
+    "inputImages": "{count}枚の画像",
+    "inputVideos": "{count}本の動画",
+    "inputDocuments": "{count}件のドキュメント"
   },
   "promptWritingGuide": {
     "title": "優れたプロンプトの書き方",
@@ -1436,16 +1486,34 @@
     "viewAllContributors": "すべてのコントリビューターを見る"
   },
   "kids": {
-    "header": { "title": "Promiのプロンプトスクール", "levels": "レベル", "home": "ホーム", "map": "マップ", "mainSite": "メインサイト" },
+    "header": {
+      "title": "Promiのプロンプトスクール",
+      "levels": "レベル",
+      "home": "ホーム",
+      "map": "マップ",
+      "mainSite": "メインサイト"
+    },
     "home": {
       "badge": "キッズ向け学習",
       "title": "AIと話すことを学ぼう！",
       "subtitle": "ロボットのPromiと一緒に、素晴らしいプロンプトを書く楽しい冒険に出かけよう！",
-      "promiIntro": { "greeting": "こんにちは、Promiだよ！🤖", "message": "キミの助けが必要なフレンドリーなロボットだよ！プロンプトをもっとよく理解できるように手伝ってくれる？" },
+      "promiIntro": {
+        "greeting": "こんにちは、Promiだよ！🤖",
+        "message": "キミの助けが必要なフレンドリーなロボットだよ！プロンプトをもっとよく理解できるように手伝ってくれる？"
+      },
       "features": {
-        "games": { "title": "楽しいゲーム", "description": "ドラッグ＆ドロップゲームやクイズで学ぼう" },
-        "stories": { "title": "すごいストーリー", "description": "Promiと一緒にワクワクする冒険を体験" },
-        "stars": { "title": "スターを集めよう", "description": "スターを集めて新しいレベルをアンロック" }
+        "games": {
+          "title": "楽しいゲーム",
+          "description": "ドラッグ＆ドロップゲームやクイズで学ぼう"
+        },
+        "stories": {
+          "title": "すごいストーリー",
+          "description": "Promiと一緒にワクワクする冒険を体験"
+        },
+        "stars": {
+          "title": "スターを集めよう",
+          "description": "スターを集めて新しいレベルをアンロック"
+        }
       },
       "startButton": "遊び始めよう！",
       "ageNote": "読み書きができる8〜14歳のお子様に最適",
@@ -1458,40 +1526,731 @@
       "next": "次へ",
       "completeFirst": "続けるには、まずアクティビティを完了してください"
     },
-    "map": { "title": "ワールドマップ", "subtitle": "レベルを選んで冒険を始めよう！", "worldLevels": "{count}レベル", "levelNumber": "レベル{number}", "locked": "前のレベルをクリアしてアンロック" },
-    "worlds": { "1": { "title": "はじまりの村" }, "2": { "title": "明確城" }, "3": { "title": "コンテキスト洞窟" }, "4": { "title": "クリエイティブ渓谷" }, "5": { "title": "マスター山" } },
-    "levels": {
-      "1_1_meet_promi": { "title": "Promiに会おう！", "description": "ロボットの友達に挨拶してAIとは何かを学ぼう" },
-      "1_2_first_words": { "title": "Promiの最初の言葉", "description": "最初のプロンプトを書いてPromiの理解を助けよう" },
-      "1_3_being_clear": { "title": "はっきり伝えよう", "description": "なぜ明確な指示がより効果的なのかを学ぼう" },
-      "2_1_missing_details": { "title": "足りない詳細", "description": "なぜ詳細が重要かを発見しよう" },
-      "2_2_who_and_what": { "title": "誰と何", "description": "キャラクターと物を追加しよう" },
-      "2_3_when_and_where": { "title": "いつとどこ", "description": "時間と場所を追加することを学ぼう" },
-      "2_4_detail_detective": { "title": "詳細探偵", "description": "詳細を追加するエキスパートになろう" },
-      "3_1_setting_the_scene": { "title": "シーンを設定", "description": "なぜコンテキストが役立つかを学ぼう" },
-      "3_2_show_dont_tell": { "title": "見せて、言わないで", "description": "例を使って欲しいものを示そう" },
-      "3_3_format_finder": { "title": "フォーマット発見者", "description": "リスト、物語、詩などを頼もう！" },
-      "3_4_context_champion": { "title": "コンテキストチャンピオン", "description": "すべてのコンテキスト技術を組み合わせよう" },
-      "4_1_pretend_time": { "title": "ごっこ遊びの時間！", "description": "ロールプレイプロンプトを学ぼう" },
-      "4_2_story_starters": { "title": "ストーリーの始まり", "description": "AIと素晴らしい物語を作ろう" },
-      "4_3_character_creator": { "title": "キャラクター作成者", "description": "AIに個性を与えよう" },
-      "4_4_world_builder": { "title": "世界構築者", "description": "想像力豊かな世界を作ろう" },
-      "5_1_perfect_prompt": { "title": "完璧なプロンプト", "description": "明確さ、詳細、コンテキストを組み合わせよう" },
-      "5_2_fix_it_up": { "title": "直そう！", "description": "弱いプロンプトを見つけて改善しよう" },
-      "5_3_prompt_remix": { "title": "プロンプトリミックス", "description": "異なる結果のためにプロンプトを書き換えよう" },
-      "5_4_graduation_day": { "title": "卒業の日", "description": "最終チャレンジ - マスターになろう！" }
+    "map": {
+      "title": "ワールドマップ",
+      "subtitle": "レベルを選んで冒険を始めよう！",
+      "worldLevels": "{count}レベル",
+      "levelNumber": "レベル{number}",
+      "locked": "前のレベルをクリアしてアンロック"
     },
-    "level": { "backToMap": "マップに戻る", "levelLabel": "レベル{number}", "comingSoon": "このレベルは近日公開！", "previous": "前へ", "next": "次へ", "map": "マップ" },
-    "levelComplete": { "title": "レベルクリア！", "nextLevel": "次のレベル", "backToMap": "マップに戻る", "allDone": "マップに戻る" },
-    "quiz": { "goodLabel": "素晴らしいプロンプト！", "badLabel": "ベストではない", "correct": "正解！", "incorrect": "いい試み！", "tryAgain": "もう一度" },
-    "magicWords": { "title": "魔法の言葉をドラッグ！✨", "dragOrTap": "🎯 言葉をドラッグまたはタップ：", "check": "チェック！", "retry": "やり直し", "correct": "正解", "tryAgain": "もう一度！" },
-    "dragDrop": { "title": "プロンプトを組み立てよう！", "instruction": "矢印で移動、または2つのピースをタップで交換！", "result": "結果", "check": "チェック！", "retry": "やり直し", "success": "完璧！素晴らしいプロンプトを作った！", "almost": "惜しい！並べ替え続けて。", "tapToSwap": "別のピースをタップして交換！" },
-    "promptParts": { "title": "プロンプトのパーツを分類！", "instruction": "各ピースをタップして、タイプを選ぼう！", "score": "スコア", "pickCategory": "これは何タイプ？", "success": "すべてのパーツを正しく分類した！", "retry": "もう一度", "types": { "role": "役割", "task": "タスク", "context": "コンテキスト", "constraint": "制約" } },
-    "exampleMatcher": { "title": "パターンマッチャー", "instruction": "パターンを見て次に来るものを選ぼう！", "pattern": "パターン：", "check": "チェック！", "retry": "もう一度", "correct": "正解！🎉", "tryAgain": "違う - パターンをもう一度見て！" },
-    "promptDoctor": { "title": "プロンプトドクター", "health": "プロンプトの健康", "sick": "病気のプロンプト", "healthy": "健康なプロンプト！", "diagnose": "問題をクリックして修正：", "success": "プロンプトが良くなった！", "retry": "最初から" },
-    "stepByStep": { "title": "ステップバイステップで考えよう", "problem": "問題：", "withoutMagic": "魔法の言葉なし：", "addMagicWords": "魔法の言葉を追加！", "magicWordsActive": "魔法の言葉を追加した！", "nextStep": "次のステップを見る", "withMagic": "ステップバイステップ思考で：", "retry": "もう一度" },
-    "promptLab": { "title": "プロンプトラボ", "progress": "改善", "yourPrompt": "あなたのプロンプト：", "aiSays": "AIの応答：", "addDetails": "改善を追加：", "success": "プロンプトがとても具体的になった！", "retry": "最初から" },
-    "wordPredictor": { "title": "AIの考え方", "instruction": "AIは最も可能性の高い次の単語を推測する。AIのように考えられる？", "aiThinks": "AIが読んでいる：", "thinkingDefault": "うーん、ここでどの単語が一番意味がある？", "check": "答えをチェック！", "correct": "AIのように考えてる！", "tryAgain": "違う！AIは最も可能性の高い単語を選ぶ。", "retry": "もう一度" },
-    "settings": { "title": "設定", "music": "音楽", "language": "言語", "progress": "あなたの進捗", "stars": "スター", "completed": "完了", "resetTitle": "進捗をリセット", "resetButton": "すべてリセット", "resetWarning": "すべてのスターと進捗が削除されます。よろしいですか？", "resetConfirm": "はい、すべてリセット", "resetComplete": "進捗をリセットしました！再読み込み中...", "cancel": "キャンセル" }
+    "worlds": {
+      "1": {
+        "title": "はじまりの村"
+      },
+      "2": {
+        "title": "明確城"
+      },
+      "3": {
+        "title": "コンテキスト洞窟"
+      },
+      "4": {
+        "title": "クリエイティブ渓谷"
+      },
+      "5": {
+        "title": "マスター山"
+      }
+    },
+    "levels": {
+      "1_1_meet_promi": {
+        "title": "Promiに会おう！",
+        "description": "ロボットの友達に挨拶してAIとは何かを学ぼう"
+      },
+      "1_2_first_words": {
+        "title": "Promiの最初の言葉",
+        "description": "最初のプロンプトを書いてPromiの理解を助けよう"
+      },
+      "1_3_being_clear": {
+        "title": "はっきり伝えよう",
+        "description": "なぜ明確な指示がより効果的なのかを学ぼう"
+      },
+      "2_1_missing_details": {
+        "title": "足りない詳細",
+        "description": "なぜ詳細が重要かを発見しよう"
+      },
+      "2_2_who_and_what": {
+        "title": "誰と何",
+        "description": "キャラクターと物を追加しよう"
+      },
+      "2_3_when_and_where": {
+        "title": "いつとどこ",
+        "description": "時間と場所を追加することを学ぼう"
+      },
+      "2_4_detail_detective": {
+        "title": "詳細探偵",
+        "description": "詳細を追加するエキスパートになろう"
+      },
+      "3_1_setting_the_scene": {
+        "title": "シーンを設定",
+        "description": "なぜコンテキストが役立つかを学ぼう"
+      },
+      "3_2_show_dont_tell": {
+        "title": "見せて、言わないで",
+        "description": "例を使って欲しいものを示そう"
+      },
+      "3_3_format_finder": {
+        "title": "フォーマット発見者",
+        "description": "リスト、物語、詩などを頼もう！"
+      },
+      "3_4_context_champion": {
+        "title": "コンテキストチャンピオン",
+        "description": "すべてのコンテキスト技術を組み合わせよう"
+      },
+      "4_1_pretend_time": {
+        "title": "ごっこ遊びの時間！",
+        "description": "ロールプレイプロンプトを学ぼう"
+      },
+      "4_2_story_starters": {
+        "title": "ストーリーの始まり",
+        "description": "AIと素晴らしい物語を作ろう"
+      },
+      "4_3_character_creator": {
+        "title": "キャラクター作成者",
+        "description": "AIに個性を与えよう"
+      },
+      "4_4_world_builder": {
+        "title": "世界構築者",
+        "description": "想像力豊かな世界を作ろう"
+      },
+      "5_1_perfect_prompt": {
+        "title": "完璧なプロンプト",
+        "description": "明確さ、詳細、コンテキストを組み合わせよう"
+      },
+      "5_2_fix_it_up": {
+        "title": "直そう！",
+        "description": "弱いプロンプトを見つけて改善しよう"
+      },
+      "5_3_prompt_remix": {
+        "title": "プロンプトリミックス",
+        "description": "異なる結果のためにプロンプトを書き換えよう"
+      },
+      "5_4_graduation_day": {
+        "title": "卒業の日",
+        "description": "最終チャレンジ - マスターになろう！"
+      }
+    },
+    "level": {
+      "backToMap": "マップに戻る",
+      "levelLabel": "レベル{number}",
+      "comingSoon": "このレベルは近日公開！",
+      "previous": "前へ",
+      "next": "次へ",
+      "map": "マップ"
+    },
+    "levelComplete": {
+      "title": "レベルクリア！",
+      "nextLevel": "次のレベル",
+      "backToMap": "マップに戻る",
+      "allDone": "マップに戻る"
+    },
+    "quiz": {
+      "goodLabel": "素晴らしいプロンプト！",
+      "badLabel": "ベストではない",
+      "correct": "正解！",
+      "incorrect": "いい試み！",
+      "tryAgain": "もう一度"
+    },
+    "magicWords": {
+      "title": "魔法の言葉をドラッグ！✨",
+      "dragOrTap": "🎯 言葉をドラッグまたはタップ：",
+      "check": "チェック！",
+      "retry": "やり直し",
+      "correct": "正解",
+      "tryAgain": "もう一度！"
+    },
+    "dragDrop": {
+      "title": "プロンプトを組み立てよう！",
+      "instruction": "矢印で移動、または2つのピースをタップで交換！",
+      "result": "結果",
+      "check": "チェック！",
+      "retry": "やり直し",
+      "success": "完璧！素晴らしいプロンプトを作った！",
+      "almost": "惜しい！並べ替え続けて。",
+      "tapToSwap": "別のピースをタップして交換！"
+    },
+    "promptParts": {
+      "title": "プロンプトのパーツを分類！",
+      "instruction": "各ピースをタップして、タイプを選ぼう！",
+      "score": "スコア",
+      "pickCategory": "これは何タイプ？",
+      "success": "すべてのパーツを正しく分類した！",
+      "retry": "もう一度",
+      "types": {
+        "role": "役割",
+        "task": "タスク",
+        "context": "コンテキスト",
+        "constraint": "制約"
+      }
+    },
+    "exampleMatcher": {
+      "title": "パターンマッチャー",
+      "instruction": "パターンを見て次に来るものを選ぼう！",
+      "pattern": "パターン：",
+      "check": "チェック！",
+      "retry": "もう一度",
+      "correct": "正解！🎉",
+      "tryAgain": "違う - パターンをもう一度見て！"
+    },
+    "promptDoctor": {
+      "title": "プロンプトドクター",
+      "health": "プロンプトの健康",
+      "sick": "病気のプロンプト",
+      "healthy": "健康なプロンプト！",
+      "diagnose": "問題をクリックして修正：",
+      "success": "プロンプトが良くなった！",
+      "retry": "最初から"
+    },
+    "stepByStep": {
+      "title": "ステップバイステップで考えよう",
+      "problem": "問題：",
+      "withoutMagic": "魔法の言葉なし：",
+      "addMagicWords": "魔法の言葉を追加！",
+      "magicWordsActive": "魔法の言葉を追加した！",
+      "nextStep": "次のステップを見る",
+      "withMagic": "ステップバイステップ思考で：",
+      "retry": "もう一度"
+    },
+    "promptLab": {
+      "title": "プロンプトラボ",
+      "progress": "改善",
+      "yourPrompt": "あなたのプロンプト：",
+      "aiSays": "AIの応答：",
+      "addDetails": "改善を追加：",
+      "success": "プロンプトがとても具体的になった！",
+      "retry": "最初から"
+    },
+    "wordPredictor": {
+      "title": "AIの考え方",
+      "instruction": "AIは最も可能性の高い次の単語を推測する。AIのように考えられる？",
+      "aiThinks": "AIが読んでいる：",
+      "thinkingDefault": "うーん、ここでどの単語が一番意味がある？",
+      "check": "答えをチェック！",
+      "correct": "AIのように考えてる！",
+      "tryAgain": "違う！AIは最も可能性の高い単語を選ぶ。",
+      "retry": "もう一度"
+    },
+    "settings": {
+      "title": "設定",
+      "music": "音楽",
+      "language": "言語",
+      "progress": "あなたの進捗",
+      "stars": "スター",
+      "completed": "完了",
+      "resetTitle": "進捗をリセット",
+      "resetButton": "すべてリセット",
+      "resetWarning": "すべてのスターと進捗が削除されます。よろしいですか？",
+      "resetConfirm": "はい、すべてリセット",
+      "resetComplete": "進捗をリセットしました！再読み込み中...",
+      "cancel": "キャンセル"
+    }
+  },
+  "book": {
+    "title": "インタラクティブ・プロンプティングブック",
+    "donate": "プロジェクトを支援",
+    "subtitle": "明確で効果的なプロンプトを作成するためのインタラクティブガイド",
+    "metaTitle": "インタラクティブ・プロンプティングブック | AIプロンプトエンジニアリング無料オンラインガイド",
+    "metaDescription": "この無料インタラクティブガイドでAIプロンプトエンジニアリングをマスターしましょう。ChatGPTプロンプト、Chain-of-Thought推論、Few-Shot学習、高度なテクニックを学べます。実例付き25以上のチャプター。",
+    "interactiveGuideBy": "インタラクティブガイド by",
+    "authorIntro": "こんにちは、<author>Fatih Kadir Akın</author>です。GitHubで人気の<repoLink>Awesome ChatGPT Prompts</repoLink>リポジトリと<siteName>prompts.chat</siteName>のキュレーターです。",
+    "bookDescription": "この包括的でインタラクティブなガイドでは、魅力的で効果的な会話を生み出す説得力のあるAIプロンプトを作成するための専門家の戦略を発見できます。AIモデルの仕組みの理解から、プロンプトチェーニングやエージェントシステムなどの高度なテクニックの習得まで、この本はAIインタラクションを次のレベルに引き上げるために必要なツールを提供します。",
+    "whatYouWillLearn": "学べること：",
+    "highlights": {
+      "understanding": "AIモデルがどのように考え、プロンプトを処理するかを理解する",
+      "crafting": "明確で具体的、効果的なプロンプトを作成する",
+      "advanced": "高度なテクニック：Chain-of-Thought、Few-Shot学習、プロンプトチェーニング",
+      "interactive": "ブラウザで直接試せるインタラクティブな例",
+      "realWorld": "執筆、プログラミング、教育、ビジネスの実際のユースケース",
+      "future": "プロンプティングの未来：エージェントとエージェントシステム"
+    },
+    "bookStructure": "本の構成",
+    "structure": {
+      "introduction": "はじめに",
+      "part1": "パート1：基礎",
+      "part2": "パート2：テクニック",
+      "part3": "パート3：高度な戦略",
+      "part4": "パート4：ベストプラクティス",
+      "part5": "パート5：ユースケース",
+      "part6": "パート6：結論",
+      "chapters": "25のインタラクティブチャプター"
+    },
+    "startReading": "読み始める",
+    "skipToChapter1": "第1章へ",
+    "continuousUpdate": "この本はAIの進化に合わせて新しいテクニックと洞察で継続的に更新されています。",
+    "partOfProject": "<repoLink>Awesome ChatGPT Prompts</repoLink>プロジェクトの一部。CC0ライセンス。",
+    "kidsSection": {
+      "question": "先生または保護者ですか？",
+      "title": "お子様向けプレイブックをお試しください！🎮",
+      "description": "子供たち（8-14歳）に楽しいパズルやストーリーを通じてAIとのコミュニケーション方法を教えるインタラクティブなゲームベースの冒険。",
+      "startPlaying": "プレイ開始"
+    },
+    "chapter": {
+      "notFound": "チャプターが見つかりません",
+      "comingSoon": "このチャプターは近日公開予定です。",
+      "previous": "前へ",
+      "next": "次へ"
+    },
+    "tableOfContents": "目次",
+    "awesomeChatGPTPrompts": "Awesome ChatGPT Prompts",
+    "search": {
+      "placeholder": "チャプターを検索...",
+      "noResults": "チャプターが見つかりません"
+    },
+    "bookmark": {
+      "add": "このチャプターをブックマーク",
+      "remove": "ブックマークを削除",
+      "continueReading": "前回の続きから読む",
+      "continue": "続ける"
+    },
+    "parts": {
+      "introduction": "はじめに",
+      "foundations": "基礎",
+      "techniques": "テクニック",
+      "advanced": "高度な戦略",
+      "bestPractices": "ベストプラクティス",
+      "useCases": "ユースケース",
+      "conclusion": "結論"
+    },
+    "chapters": {
+      "00a-preface": "序文",
+      "00b-history": "歴史",
+      "00c-introduction": "はじめに",
+      "01-understanding-ai-models": "AIモデルを理解する",
+      "02-anatomy-of-effective-prompt": "効果的なプロンプトの構造",
+      "03-core-prompting-principles": "プロンプティングの核心原則",
+      "04-role-based-prompting": "ロールベースプロンプティング",
+      "05-structured-output": "構造化出力",
+      "06-chain-of-thought": "思考の連鎖",
+      "07-few-shot-learning": "Few-Shot学習",
+      "08-iterative-refinement": "反復的改善",
+      "09-json-yaml-prompting": "JSON & YAMLプロンプティング",
+      "10-system-prompts-personas": "システムプロンプトとペルソナ",
+      "11-prompt-chaining": "プロンプトチェーニング",
+      "12-handling-edge-cases": "エッジケースの処理",
+      "13-multimodal-prompting": "マルチモーダルプロンプティング",
+      "14-context-engineering": "コンテキストエンジニアリング",
+      "25-agents-and-skills": "エージェントとスキル",
+      "15-common-pitfalls": "よくある落とし穴",
+      "16-ethics-responsible-use": "倫理と責任ある使用",
+      "17-prompt-optimization": "プロンプト最適化",
+      "18-writing-content": "ライティングとコンテンツ",
+      "19-programming-development": "プログラミングと開発",
+      "20-education-learning": "教育と学習",
+      "21-business-productivity": "ビジネスと生産性",
+      "22-creative-arts": "クリエイティブアート",
+      "23-research-analysis": "研究と分析",
+      "24-future-of-prompting": "プロンプティングの未来"
+    },
+    "chapterDescriptions": {
+      "00a-preface": "著者からの個人的なメッセージ",
+      "00b-history": "Awesome ChatGPT Promptsの歴史",
+      "00c-introduction": "プロンプトエンジニアリングとは何か、なぜ重要か",
+      "01-understanding-ai-models": "大規模言語モデルの仕組み",
+      "02-anatomy-of-effective-prompt": "プロンプトを効果的にする要素",
+      "03-core-prompting-principles": "より良いプロンプトのための基本原則",
+      "04-role-based-prompting": "ペルソナとロールを効果的に使用する",
+      "05-structured-output": "一貫性のある整形された応答を得る",
+      "06-chain-of-thought": "複雑なタスクのためのステップバイステップ推論",
+      "07-few-shot-learning": "例を通じて教える",
+      "08-iterative-refinement": "反復を通じてプロンプトを改善する",
+      "09-json-yaml-prompting": "プロンプトでの構造化データ形式",
+      "10-system-prompts-personas": "一貫したAIパーソナリティを作成する",
+      "11-prompt-chaining": "複数のプロンプトを接続する",
+      "12-handling-edge-cases": "予期しない入力を処理する",
+      "13-multimodal-prompting": "画像、音声、動画を扱う",
+      "14-context-engineering": "RAG、エンベディング、関数呼び出し、MCP",
+      "25-agents-and-skills": "再利用可能なスキルパッケージでAIエージェントを構築する",
+      "15-common-pitfalls": "避けるべき間違い",
+      "16-ethics-responsible-use": "AIにおける倫理的考慮",
+      "17-prompt-optimization": "プロンプトのテストと改善",
+      "18-writing-content": "コンテンツ作成とコピーライティング",
+      "19-programming-development": "コード生成とデバッグ",
+      "20-education-learning": "教育と学習のアプリケーション",
+      "21-business-productivity": "プロフェッショナルと職場のアプリケーション",
+      "22-creative-arts": "芸術的でクリエイティブなアプリケーション",
+      "23-research-analysis": "データ分析と研究タスク",
+      "24-future-of-prompting": "新興トレンドと将来の展望"
+    },
+    "interactive": {
+      "tryIt": "自分で試す",
+      "copy": "コピー",
+      "copied": "コピーしました！",
+      "correct": "正解！",
+      "notQuite": "惜しい。",
+      "nextTokenPrediction": "次トークン予測",
+      "watchHowAIPredicts": "AIが各ステップで次のトークンをどのように予測するか見てみましょう",
+      "replay": "リプレイ",
+      "playing": "再生中...",
+      "play": "再生",
+      "pressPlayToStart": "再生を押して開始...",
+      "completingCurrentToken": "現在のトークンを完了中：",
+      "top3PredictedNextTokens": "予測次トークンTop3：",
+      "howItWorks": "仕組み：",
+      "howItWorksExplanation": "各ステップで、モデルは可能なすべての次のトークン（約50,000以上）の確率を計算します。最も確率の高いトークンが選択され、プロセスが繰り返されます。",
+      "tokenizerDemo": "トークナイザーデモ",
+      "seeHowTextIsSplit": "テキストがトークンにどのように分割されるか見てみましょう",
+      "enterText": "テキストを入力：",
+      "tokens": "トークン",
+      "tryExamples": "試してみてください：「素晴らしい」「ChatGPTは最高」または自分のテキストを入力",
+      "contextWindowVisualizer": "コンテキストウィンドウビジュアライザー",
+      "understandHowContextIsConsumed": "コンテキストがどのように消費されるか理解する",
+      "contextWindow": "コンテキストウィンドウ",
+      "remaining": "残り",
+      "prompt": "プロンプト",
+      "response": "応答",
+      "yourPrompt": "あなたのプロンプト：",
+      "aiResponse": "AI応答",
+      "contextOverflow": "コンテキストオーバーフロー！",
+      "contextOverflowMessage": "プロンプト+応答がコンテキストウィンドウを超えています。モデルは切り捨てるか失敗します。プロンプトの長さを短くするか、短い応答をリクエストしてください。",
+      "tipLabel": "ヒント：",
+      "contextTip": "プロンプトとAI応答の両方がコンテキストウィンドウに収まる必要があります。長いプロンプトは応答のスペースを減らします。重要な情報はプロンプトの最初に置いてください。",
+      "temperatureDemo": "温度デモ",
+      "seeHowRandomnessAffects": "ランダム性が出力にどのように影響するか見てみましょう",
+      "temperature": "温度",
+      "deterministic": "決定的",
+      "balanced": "バランス",
+      "creative": "クリエイティブ",
+      "veryCreative": "非常にクリエイティブ",
+      "focused": "集中",
+      "random": "ランダム",
+      "possibleResponsesAtThisTemp": "この温度での可能な応答：",
+      "useLowTemperature": "低温度を使用",
+      "useHighTemperature": "高温度を使用",
+      "forFactualAnswers": "事実的で一貫した回答に。",
+      "forCreativeWriting": "クリエイティブライティングやブレインストーミングに。",
+      "structuredOutputDemo": "構造化出力デモ",
+      "seeTheDifferenceStructureMakes": "構造がどのような違いを生むか見てみましょう",
+      "unstructured": "非構造化",
+      "output": "出力：",
+      "youCan": "できること：",
+      "parseProgrammatically": "プログラムで解析",
+      "compareAcrossQueries": "クエリ間で比較",
+      "integrateIntoWorkflows": "ワークフローに統合",
+      "validateForCompleteness": "完全性を検証",
+      "parseProgrammaticallyLabel": "プログラムで解析：",
+      "complexRegexRequired": "複雑な正規表現またはNLPが必要",
+      "unreliableBreaksWithChanges": "信頼性が低く、小さな変更で壊れる",
+      "simpleAndReliable": "シンプルで信頼性が高い",
+      "parseableWithMarkdown": "markdownライブラリで解析可能",
+      "fewShotLearningDemo": "Few-Shot学習デモ",
+      "seeHowExamplesImproveAccuracy": "例がどのように精度を向上させるか見てみましょう",
+      "numberOfExamples": "例の数",
+      "zeroShot": "Zero-shot",
+      "oneShot": "One-shot",
+      "twoShot": "Two-shot",
+      "threeShot": "Three-shot",
+      "examplesProvided": "提供された例：",
+      "testInput": "テスト入力：",
+      "modelPrediction": "モデル予測：",
+      "confidence": "信頼度：",
+      "expected": "期待値：",
+      "formatComparison": "フォーマット比較",
+      "sameDataDifferentFormats": "同じデータ、異なるフォーマット",
+      "defineStructureWithTypeScript": "TypeScriptインターフェースで構造を定義",
+      "machineReadableStrictSyntax": "機械可読、厳密な構文、API向け",
+      "humanReadableSupportsComments": "人間可読、コメントサポート、設定向け",
+      "defineSchema": "スキーマ定義",
+      "apisAndParsing": "APIとパース",
+      "configFiles": "設定ファイル",
+      "iterativeRefinementDemo": "反復的改善デモ",
+      "watchAPromptEvolve": "プロンプトの進化を見てみましょう",
+      "pause": "一時停止",
+      "versionXOfY": "バージョン {current} / {total}",
+      "newInThisVersion": "このバージョンの新機能",
+      "quality": "品質",
+      "issue": "問題：",
+      "success": "成功",
+      "successMessage": "プロンプトは高品質で一貫した出力を生成するようになりました。",
+      "apiCostCalculator": "APIコスト計算機",
+      "inputTokens": "入力トークン（リクエストごと）",
+      "outputTokens": "出力トークン（リクエストごと）",
+      "inputPrice": "入力価格（$100万トークンあたり）",
+      "outputPrice": "出力価格（$100万トークンあたり）",
+      "requestsPerDay": "1日あたりのリクエスト数",
+      "perRequest": "リクエストごと",
+      "dailyCost": "日次コスト",
+      "monthlyCost": "月次コスト",
+      "textToImageBuildPrompt": "テキストto画像：プロンプトを構築",
+      "selectOptionsToBuiltImagePrompt": "各カテゴリからオプションを選択して画像プロンプトを構築：",
+      "generatedPrompt": "生成されたプロンプト",
+      "simulateDiffusionProcess": "拡散プロセスをシミュレート",
+      "diffusionStep1": "ランダムノイズから開始",
+      "diffusionStep2": "おおまかな形を検出",
+      "diffusionStep3": "基本的な色と形を追加",
+      "diffusionStep4": "ディテールを洗練",
+      "diffusionStep5": "最終画像",
+      "diffusionExplanation": "実際の拡散モデルは数千ステップを実行し、一貫した画像が現れるまで徐々にノイズを除去します。",
+      "textToVideoBuildPrompt": "テキストto動画：プロンプトを構築",
+      "videoPromptsNeed": "動画プロンプトには動き、カメラワーク、タイミングが必要：",
+      "playAnimation": "アニメーション再生",
+      "stop": "停止",
+      "frame": "フレーム：",
+      "consistency": "一貫性：",
+      "consistencyDesc": "被写体がフレーム間で同じまま",
+      "motion": "モーション：",
+      "motionDesc": "位置が時間とともにスムーズに変化",
+      "physics": "物理：",
+      "physicsDesc": "動きが自然の法則に従う",
+      "simplifiedAnimationPreview": "簡略化されたアニメーションプレビュー",
+      "videoModelExplanation": "実際の動画モデルは24-60fpsでフォトリアルなディテールと一貫した被写体を生成します。",
+      "embeddingsVisualization": "エンベディング可視化",
+      "clickWordToSeeVector": "単語をクリックしてベクトルと他の単語との類似度を見る：",
+      "vector": "ベクトル",
+      "similarityTo": "との類似度：",
+      "embeddingsExplanation": "類似した意味を持つ単語（「幸せ」と「喜び」など）は類似したベクトルを持ち、高い類似度スコアを得ます。",
+      "canDoWell": "得意なこと",
+      "cannotDo": "できないこと",
+      "promptBuilder": "プロンプトビルダー",
+      "buildYourPromptStepByStep": "プロンプトをステップバイステップで構築",
+      "pleaseAddTask": "プロンプトに少なくとも1つのタスクを追加してください",
+      "rateLimitReached": "レート制限に達しました。再試行まで：",
+      "orSignInForMore": "またはサインインしてもっと使用。",
+      "failedToRunPrompt": "プロンプトの実行に失敗",
+      "runWithAI": "AIで実行",
+      "failedToConnectApi": "APIへの接続に失敗",
+      "day": "日",
+      "promptAnalyzer": "プロンプトアナライザー",
+      "getAiFeedbackOnPrompt": "プロンプトのAIフィードバックを取得",
+      "pasteOrWritePromptHere": "ここにプロンプトを貼り付けまたは入力...",
+      "analyze": "分析",
+      "pleaseEnterPromptToAnalyze": "分析するプロンプトを入力してください",
+      "failedToAnalyzePrompt": "プロンプトの分析に失敗",
+      "clarity": "明確さ",
+      "specificity": "具体性",
+      "missingElements": "欠落要素",
+      "suggestions": "提案",
+      "improvedVersion": "改善版",
+      "summarizationStrategies": "要約戦略",
+      "originalConversation": "元の会話",
+      "after": "後：",
+      "summary": "要約",
+      "keptMessages": "保持されたメッセージ",
+      "saved": "節約：",
+      "part": "パート",
+      "demoExamples": {
+        "tokenPrediction": {
+          "tokens": [
+            "日本",
+            "の",
+            "首都",
+            "は",
+            "東京",
+            "です",
+            "。"
+          ],
+          "fullText": "日本の首都は東京です。"
+        },
+        "tokenizer": {
+          "default": "example1",
+          "samples": {
+            "example1": {
+              "text": "こんにちは、世界！",
+              "tokens": [
+                "こんにちは",
+                "、",
+                "世界",
+                "！"
+              ]
+            },
+            "example2": {
+              "text": "東京首都",
+              "tokens": [
+                "東京",
+                "首都"
+              ]
+            },
+            "example3": {
+              "text": "人工知能",
+              "tokens": [
+                "人工",
+                "知能"
+              ]
+            },
+            "example4": {
+              "text": "東京スカイツリー",
+              "tokens": [
+                "東京",
+                "スカイ",
+                "ツリー"
+              ]
+            },
+            "example5": {
+              "text": "プロンプトエンジニアリング",
+              "tokens": [
+                "プロンプト",
+                "エンジニアリング"
+              ]
+            }
+          },
+          "tryExamples": "例を試すか、自分のテキストを入力"
+        },
+        "temperature": {
+          "prompt": "日本の首都はどこですか？",
+          "lowTemp": [
+            "日本の首都は東京です。",
+            "日本の首都は東京です。",
+            "日本の首都は東京です。"
+          ],
+          "mediumLowTemp": [
+            "日本の首都は東京です。",
+            "東京は日本の首都です。",
+            "日本の首都は東京、アジアの大都市です。"
+          ],
+          "mediumHighTemp": [
+            "東京が日本の首都として機能しています。",
+            "日本の首都は東京、東京タワーのある街です。",
+            "日本の首都は歴史と現代が融合した東京です。"
+          ],
+          "highTemp": [
+            "東京、輝く光の都市が、日本の壮大な首都として誇らしくそびえ立っています！",
+            "日本のロマンチックな首都は、魅力的な東京の街に他なりません。",
+            "日本の心臓は、芸術と文化の愛される首都、東京で脈打っています。"
+          ]
+        },
+        "fewShot": {
+          "examples": [
+            {
+              "input": "この製品が大好きです！",
+              "output": "ポジティブ"
+            },
+            {
+              "input": "ひどい体験、お金の無駄",
+              "output": "ネガティブ"
+            },
+            {
+              "input": "まあまあ、特別なものはない",
+              "output": "ニュートラル"
+            }
+          ],
+          "testCase": {
+            "input": "品質は良いが配送が遅い",
+            "expected": "混合"
+          },
+          "labels": {
+            "positive": "ポジティブ",
+            "negative": "ネガティブ",
+            "neutral": "ニュートラル",
+            "mixed": "混合"
+          }
+        }
+      },
+      "promptChallenge": "プロンプトチャレンジ",
+      "yourTask": "あなたのタスク：",
+      "yourPromptWillBeScoredOn": "プロンプトは以下で評価されます：",
+      "startChallenge": "チャレンジ開始",
+      "writeYourPromptHere": "ここにプロンプトを書く...",
+      "points": "ポイント",
+      "hints": "ヒント",
+      "hintsUsed": "{used}/{total}使用、各-5ポイント",
+      "revealNextHint": "次のヒントを表示（-5ポイント）",
+      "submitForScoring": "採点のために送信",
+      "aiCallsRemaining": "残りAI呼び出し",
+      "excellent": "🎉 素晴らしい！",
+      "goodEffort": "👍 良い努力！",
+      "keepPracticing": "練習を続けよう！",
+      "criteriaBreakdown": "基準の内訳：",
+      "suggestionsForImprovement": "改善の提案：",
+      "exampleSolution": "例の解決策",
+      "hide": "非表示",
+      "show": "表示",
+      "improveThisPrompt": "このプロンプトを改善",
+      "improveThisPromptTask": "このプロンプトを改善してより良い結果を得る",
+      "improvePromptTask": "このプロンプトを改善してより良い結果を得る",
+      "originalWeakPrompt": "元の（弱い）プロンプト",
+      "yourImprovedVersion": "あなたの改善版",
+      "compareWithAI": "AIと比較",
+      "reset": "リセット",
+      "showIdealSolution": "理想的な解決策を表示",
+      "hideIdealSolution": "理想的な解決策を非表示",
+      "idealSolution": "理想的な解決策",
+      "yourVersionBetter": "🎉 あなたのバージョンの方が良い！",
+      "yourVersionIsBetter": "🎉 あなたのバージョンの方が良い！",
+      "keepImproving": "元の方が良いかもしれません。改善を続けましょう！",
+      "originalMightBeBetter": "元の方が良いかもしれません。改善を続けましょう！",
+      "keyDifferences": "主な違い：",
+      "beginner": "初心者",
+      "intermediate": "中級者",
+      "advanced": "上級者",
+      "youllHaveTime": "このチャレンジを完了するのに{time}あります。",
+      "takeYourTime": "時間をかけて最高のプロンプトを作成してください。",
+      "pleaseWritePromptBeforeSubmitting": "送信前にプロンプトを書いてください",
+      "fillInTheBlanks": "空欄を埋める",
+      "perfect": "🎉 完璧！",
+      "ofCorrect": "{score} / {total} 正解",
+      "correctAnswer": "正解：",
+      "checking": "チェック中...",
+      "checkAnswers": "回答をチェック",
+      "tryAgain": "もう一度",
+      "aiPoweredValidation": "AI駆動のセマンティック検証",
+      "hintForBlank": "ヒント：",
+      "wellStructuredPrompt": "🎉 よく構造化されたプロンプト！",
+      "consistencyIssuesFound": "一貫性の問題がいくつか見つかりました",
+      "issues": "問題：",
+      "aiValidationFailed": "AI検証に失敗。ローカル検証を使用。",
+      "aiCheckFailed": "AIチェックに失敗。もう一度お試しください。",
+      "checklist": "チェックリスト",
+      "complete": "完了",
+      "allDoneGreatWork": "🎉 すべて完了！素晴らしい仕事！",
+      "debugThisPrompt": "このプロンプトをデバッグ",
+      "hideHint": "ヒントを非表示",
+      "showHint": "ヒントを表示",
+      "thePrompt": "プロンプト：",
+      "theOutputProblematic": "出力（問題あり）：",
+      "whatsWrongWithThisPrompt": "このプロンプトの何が問題ですか？",
+      "jailbreakAttackSimulator": "ジェイルブレイク攻撃シミュレーター",
+      "selectAttackType": "攻撃タイプを選択して仕組みを見て、AIが防御するかテスト：",
+      "systemPromptDefense": "システムプロンプト（防御）",
+      "attackAttempt": "攻撃試行",
+      "whatThisAttackDoes": "この攻撃が行うこと：",
+      "testJailbreakDefense": "ジェイルブレイク防御をテスト",
+      "systemPromptLabel": "システムプロンプト",
+      "userAttemptsJailbreak": "ユーザーがジェイルブレイクを試行",
+      "sequentialChain": "シーケンシャルチェーン",
+      "parallelChain": "パラレルチェーン",
+      "conditionalChain": "条件付きチェーン",
+      "iterativeChain": "反復チェーン",
+      "running": "実行中...",
+      "run": "実行",
+      "outputLabel": "出力",
+      "skippedConditionNotMet": "スキップ - 条件未達成",
+      "iterationOf": "イテレーション {current} / {total}",
+      "previousOutputAsInput": "前の出力を入力として",
+      "loopUntilQualityMet": "品質しきい値に達するまでループ",
+      "chainErrorHandlingDemo": "チェーンエラー処理デモ",
+      "attempt": "試行",
+      "retryingWithFeedback": "エラーフィードバックで再試行...",
+      "switchingToFallback": "フォールバックアプローチに切り替え...",
+      "failed": "失敗",
+      "retry": "再試行",
+      "fallback": "フォールバック",
+      "contextPlayground": "コンテキストプレイグラウンド",
+      "toggleContextBlocks": "コンテキストブロックを切り替えて組み合わせを確認。トークン数に注意！",
+      "overContextLimit": "コンテキスト制限を超えました！一部のコンテンツが切り捨てられます。",
+      "enableContextBlocksToBuild": "コンテキストブロックを有効にしてプロンプトを構築",
+      "testContext": "コンテキストをテスト"
+    }
+  },
+  "userExamples": {
+    "addMyExample": "私の例を追加",
+    "addExampleTitle": "あなたの例を追加",
+    "addExampleDescriptionImage": "このプロンプトを使って作成した画像を共有してください。",
+    "addExampleDescriptionVideo": "このプロンプトを使って作成した動画を共有してください。",
+    "imageUrl": "画像URL",
+    "videoUrl": "動画URL",
+    "imagePreview": "画像プレビュー",
+    "videoPreview": "動画プレビュー",
+    "urlTab": "URL",
+    "uploadTab": "アップロード",
+    "clickToUpload": "クリックして画像をアップロード",
+    "clickToUploadVideo": "クリックして動画をアップロード",
+    "uploading": "アップロード中...",
+    "maxFileSize": "最大4MB（JPEG、PNG、GIF、WebP）",
+    "fileTooLarge": "ファイルが大きすぎます。最大サイズは4MBです。",
+    "invalidFileType": "無効なファイルタイプ。JPEG、PNG、GIF、WebPのみ許可されています。",
+    "invalidVideoType": "無効なファイルタイプ。MP4動画のみ許可されています。",
+    "commentOptional": "コメント（任意）",
+    "commentPlaceholder": "作品の説明やヒントを共有...",
+    "cancel": "キャンセル",
+    "submit": "送信",
+    "communityExamples": "コミュニティの例",
+    "userExample": "ユーザーの例"
   }
 }

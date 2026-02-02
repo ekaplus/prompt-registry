@@ -365,6 +365,7 @@ const createPromptSchema = (t: (key: string) => string) => z.object({
     command: z.string(),
     tools: z.array(z.string()).optional(),
   })).optional(),
+  workflowLink: z.string().url().optional().or(z.literal("")),
 }).superRefine((data, ctx) => {
   if (data.type === "SKILL") {
     const frontmatterError = validateSkillFrontmatter(data.content);
@@ -459,6 +460,7 @@ export function PromptForm({ categories, tags, initialData, initialContributors 
       requiredMediaCount: initialData?.requiredMediaCount || 1,
       bestWithModels: initialData?.bestWithModels || [],
       bestWithMCP: initialData?.bestWithMCP || [],
+      workflowLink: initialData?.workflowLink || "",
     },
   });
 

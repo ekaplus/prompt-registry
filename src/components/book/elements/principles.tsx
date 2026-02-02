@@ -2,17 +2,12 @@
 
 import { Gem, Target, Crown, Compass, RefreshCw, Sparkles, Ruler, CheckCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useLocale } from "next-intl";
+import { getLocaleField, type Principle } from "./locales";
 
-const principles = [
-  { icon: Gem, title: "Clarity Over Cleverness", description: "Be explicit and unambiguous", color: "blue" },
-  { icon: Target, title: "Specificity Yields Quality", description: "Details improve outputs", color: "green" },
-  { icon: Crown, title: "Context Is King", description: "Include all relevant information", color: "purple" },
-  { icon: Compass, title: "Guide, Don't Just Ask", description: "Structure the reasoning process", color: "amber" },
-  { icon: RefreshCw, title: "Iterate and Refine", description: "Improve through successive attempts", color: "pink" },
-  { icon: Sparkles, title: "Leverage Strengths", description: "Work with model training", color: "cyan" },
-  { icon: Ruler, title: "Control Structure", description: "Request specific formats", color: "indigo" },
-  { icon: CheckCircle, title: "Verify and Validate", description: "Check outputs for accuracy", color: "rose" },
-] as const;
+const iconMap: Record<string, typeof Gem> = {
+  Gem, Target, Crown, Compass, RefreshCw, Sparkles, Ruler, CheckCircle
+};
 
 const principleColors: Record<string, { bg: string; border: string; icon: string }> = {
   blue: { bg: "bg-blue-50 dark:bg-blue-950/30", border: "border-blue-200 dark:border-blue-800", icon: "text-blue-600 dark:text-blue-400" },
@@ -26,11 +21,14 @@ const principleColors: Record<string, { bg: string; border: string; icon: string
 };
 
 export function PrinciplesSummary() {
+  const locale = useLocale();
+  const principles = getLocaleField(locale, "principles");
+  
   return (
     <div className="my-6 grid gap-2">
       {principles.map((principle, index) => {
         const colors = principleColors[principle.color];
-        const Icon = principle.icon;
+        const Icon = iconMap[principle.iconName];
         return (
           <div
             key={index}
