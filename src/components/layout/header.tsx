@@ -482,12 +482,12 @@ export function Header({ authProvider = "credentials", allowRegistration = true 
           )}
 
           {/* Developers link */}
-          <Button asChild variant="ghost" size="icon" className="hidden 2xl:flex h-8 w-8">
+          {/* <Button asChild variant="ghost" size="icon" className="hidden 2xl:flex h-8 w-8">
             <Link href="/developers" title={t("nav.developers")}>
               <Hammer className="h-4 w-4" />
               <span className="sr-only">{t("nav.developers")}</span>
             </Link>
-          </Button>
+          </Button> */}
 
           {/* Create prompt button */}
           {user && (
