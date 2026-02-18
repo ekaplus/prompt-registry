@@ -8,34 +8,19 @@
 
 /**
  * Public pages that don't require authentication
+ * STRICT MODE: Only authentication and legal pages are public
  */
 export const PUBLIC_PAGES = [
-  '/',
   '/login',
   '/register',
-  '/prompts',
-  '/discover',
-  '/categories',
-  '/tags',
   '/about',
   '/privacy',
   '/terms',
-  '/docs',
-  '/book',
-  '/kids',
-  '/embed',
-  '/brand',
-  '/developers',
-  '/support',
-  '/workflows',
-  '/skills',
-  '/promptmasters',
-  '/how_to_write_effective_prompts',
 ];
 
 /**
  * Public API routes that don't require authentication
- * These are primarily read-only endpoints
+ * STRICT MODE: Only authentication endpoints are public
  */
 export const PUBLIC_API_ROUTES = [
   '/api/health',
@@ -49,23 +34,14 @@ export const PUBLIC_API_ROUTES = [
   '/api/auth/callback/**',
   '/api/auth/csrf',
   '/api/auth/error',
-  '/api/book/demo',
-  '/api/leaderboard',
-  '/api/config/storage',
-  '/prompts.json',
-  '/prompts.csv',
-  '/.well-known/skills',
 ];
 
 /**
  * API routes that are public for GET requests only
  * Write operations (POST/PUT/PATCH/DELETE) require authentication
+ * STRICT MODE: All APIs require authentication
  */
-export const PUBLIC_READ_ONLY_API_ROUTES = [
-  '/api/prompts',
-  '/api/prompts/search',
-  '/api/search/ai',
-];
+export const PUBLIC_READ_ONLY_API_ROUTES: string[] = [];
 
 /**
  * Pages that require authentication
@@ -191,40 +167,13 @@ export function getRouteProtection(pathname: string, method: string): 'public' |
     return 'public';
   }
   
-  // Special handling for dynamic prompt routes
-  // GET /api/prompts/[id] is public, but other methods require auth
-  if (pathname.match(/^\/api\/prompts\/[^/]+$/)) {
-    return method === 'GET' ? 'public' : 'auth';
-  }
-  
-  // GET requests to prompt sub-resources are public
-  // (e.g., /api/prompts/[id]/raw, /api/prompts/[id]/comments)
-  if (pathname.match(/^\/api\/prompts\/[^/]+\/.+$/) && method === 'GET') {
-    return 'public';
-  }
-  
-  // View prompt pages are public (e.g., /prompts/[id])
-  if (pathname.match(/^\/prompts\/[^/]+$/) && !pathname.includes('/edit')) {
-    return 'public';
-  }
-  
-  // Category and tag detail pages are public
-  if (pathname.match(/^\/(categories|tags)\/[^/]+$/)) {
-    return 'public';
-  }
-  
-  // User profile pages are public (e.g., /[username])
-  // These are at the root level and don't start with known prefixes
-  // Only treat as user profile if it looks like a valid username pattern
-  if (pathname.match(/^\/[a-zA-Z0-9_-]+$/) && !pathname.startsWith('/_')) {
-    // Check if it's not a known system route
-    const knownSystemRoutes = ['settings', 'feed', 'collection', 'admin', 'builder', 'prompts', 'discover', 'categories', 'tags', 'about', 'privacy', 'terms', 'docs', 'book', 'kids', 'embed', 'brand', 'developers', 'support', 'workflows', 'skills', 'promptmasters'];
-    const routeName = pathname.slice(1); // Remove leading slash
-    
-    if (!knownSystemRoutes.includes(routeName)) {
-      return 'public'; // Likely a user profile
-    }
-  }
+  // STRICT MODE: All dynamic routes require authentication
+  // This includes:
+  // - Individual prompt pages: /prompts/[id]
+  // - Prompt API endpoints: /api/prompts/[id] and sub-resources
+  // - Category detail pages: /categories/[slug]
+  // - Tag detail pages: /tags/[slug]
+  // - User profile pages: /[username]
   
   // Default to requiring authentication for unknown routes
   // This is a fail-safe approach - better to require auth than expose data
