@@ -173,8 +173,9 @@ async function buildAuthConfig() {
           }
         }
 
-        // On subsequent requests, verify user exists and refresh data
-        if (token.id && !user) {
+        // Only refresh data from database on explicit update trigger
+        // Do NOT query database on every request (breaks Edge runtime in middleware)
+        if (trigger === "update" && token.id) {
           const dbUser = await db.user.findUnique({
             where: { id: token.id as string },
             select: { id: true, role: true, username: true, locale: true, name: true, avatar: true },
@@ -185,14 +186,12 @@ async function buildAuthConfig() {
             return null;
           }
 
-          // Update token with latest user data on explicit update or if data missing
-          if (trigger === "update" || !token.username) {
-            token.role = dbUser.role;
-            token.username = dbUser.username;
-            token.locale = dbUser.locale;
-            token.name = dbUser.name;
-            token.picture = dbUser.avatar;
-          }
+          // Update token with latest user data
+          token.role = dbUser.role;
+          token.username = dbUser.username;
+          token.locale = dbUser.locale;
+          token.name = dbUser.name;
+          token.picture = dbUser.avatar;
         }
 
         return token;
