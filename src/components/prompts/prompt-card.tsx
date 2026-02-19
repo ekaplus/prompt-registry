@@ -17,6 +17,7 @@ import { VariableFillModal, hasVariables, renderContentWithVariables } from "@/c
 import { ExamplesSlider } from "@/components/prompts/examples-slider";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { AudioPlayer } from "@/components/prompts/audio-player";
+import { UsageMetricsBadge } from "@/components/prompts/usage-metrics-badge";
 import {
   Tooltip,
   TooltipContent,
@@ -83,6 +84,11 @@ export interface PromptCardProps {
         avatar: string | null;
       };
     }>;
+    usageMetrics?: {
+      copiedCount: number;
+      downloadCount: number;
+      runCount: number;
+    };
   };
   showPinButton?: boolean;
   isPinned?: boolean;
@@ -136,8 +142,20 @@ export function PromptCard({ prompt, showPinButton = false, isPinned = false }: 
   const contentHasVariables = hasVariables(prompt.content);
 
   const copyToClipboard = async (content: string) => {
-    await navigator.clipboard.writeText(content);
-    toast.success(tCommon("copiedToClipboard"));
+    try {
+      await navigator.clipboard.writeText(content);
+      
+      // Track usage
+      const { analyticsPrompt } = await import("@/lib/analytics");
+      const { trackPromptUsage } = await import("@/lib/usage-tracking");
+      analyticsPrompt.copy(prompt.id);
+      trackPromptUsage(prompt.id, 'COPY');
+      
+      toast.success(tCommon("copiedToClipboard"));
+    } catch (error) {
+      console.error('Copy failed:', error);
+      toast.error(tCommon("failedToCopy"));
+    }
   };
 
   const handleCopyClick = () => {
@@ -152,6 +170,7 @@ export function PromptCard({ prompt, showPinButton = false, isPinned = false }: 
   const handleRunClick = () => {
     setModalMode("run");
     setModalOpen(true);
+    // Note: Actual tracking happens in RunPromptButton when platform is selected
   };
 
   const handleDownloadSkill = async () => {
@@ -172,6 +191,13 @@ export function PromptCard({ prompt, showPinButton = false, isPinned = false }: 
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(downloadUrl);
+      
+      // Track usage
+      const { analyticsPrompt } = await import("@/lib/analytics");
+      const { trackPromptUsage } = await import("@/lib/usage-tracking");
+      analyticsPrompt.download(prompt.id, 'skill');
+      trackPromptUsage(prompt.id, 'DOWNLOAD');
+      
       toast.success(t("downloadStarted"));
     } catch {
       toast.error(t("downloadFailed"));
@@ -311,6 +337,9 @@ export function PromptCard({ prompt, showPinButton = false, isPinned = false }: 
             open={modalOpen}
             onOpenChange={setModalOpen}
             mode={modalMode}
+            promptId={prompt.id}
+            categoryName={prompt.category?.name}
+            parentCategoryName={prompt.category?.parent?.name}
           />
         )}
 
@@ -381,6 +410,13 @@ export function PromptCard({ prompt, showPinButton = false, isPinned = false }: 
               <ArrowBigUp className="h-3.5 w-3.5" />
               {prompt.voteCount}
             </span>
+            {prompt.usageMetrics && (
+              <UsageMetricsBadge
+                copiedCount={prompt.usageMetrics.copiedCount}
+                downloadCount={prompt.usageMetrics.downloadCount}
+                runCount={prompt.usageMetrics.runCount}
+              />
+            )}
             <button
               onClick={handleCopyClick}
               className="p-1 rounded hover:bg-accent"
@@ -410,6 +446,7 @@ export function PromptCard({ prompt, showPinButton = false, isPinned = false }: 
                 size="icon" 
                 variant="ghost" 
                 className="h-6 w-6"
+                promptId={prompt.id}
                 categoryName={prompt.category?.name}
                 parentCategoryName={prompt.category?.parent?.name}
                 promptType={prompt.type as "TEXT" | "IMAGE" | "VIDEO" | "AUDIO" | "STRUCTURED" | "SKILL"}

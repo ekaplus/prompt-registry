@@ -15,6 +15,7 @@ import {
 import { toast } from "sonner";
 import { RunPromptButton } from "@/components/prompts/run-prompt-button";
 import { analyticsPrompt } from "@/lib/analytics";
+import { trackPromptUsage } from "@/lib/usage-tracking";
 
 interface Variable {
   name: string;
@@ -105,6 +106,9 @@ export function VariableFillModal({
       await navigator.clipboard.writeText(getFinalContent());
       analyticsPrompt.fillVariables(promptId);
       analyticsPrompt.copy(promptId);
+      if (promptId) {
+        trackPromptUsage(promptId, 'COPY');
+      }
       toast.success(t("copied"));
       onOpenChange(false);
     } catch {
@@ -143,7 +147,7 @@ export function VariableFillModal({
               {t("copy")}
             </Button>
           ) : (
-            <RunPromptButton content={finalContent} size="sm" categoryName={categoryName} parentCategoryName={parentCategoryName} />
+            <RunPromptButton content={finalContent} size="sm" promptId={promptId} categoryName={categoryName} parentCategoryName={parentCategoryName} />
           )}
         </div>
       </DialogContent>

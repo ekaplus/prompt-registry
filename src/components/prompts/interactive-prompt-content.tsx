@@ -14,6 +14,7 @@ import { ShareDropdown } from "./share-dropdown";
 import { CodeView } from "@/components/ui/code-view";
 import { CodeEditor } from "@/components/ui/code-editor";
 import { prettifyJson } from "@/lib/format";
+import { trackPromptUsage } from "@/lib/usage-tracking";
 
 interface Variable {
   name: string;
@@ -252,6 +253,9 @@ export function InteractivePromptContent({
     try {
       await navigator.clipboard.writeText(getFinalContent());
       setCopied(true);
+      if (promptId) {
+        trackPromptUsage(promptId, 'COPY');
+      }
       toast.success(t("copied"));
       setTimeout(() => setCopied(false), 2000);
     } catch {
@@ -339,6 +343,7 @@ export function InteractivePromptContent({
                 unfilledVariables={unfilledVariables}
                 onVariablesFilled={handleVariablesFilled}
                 getContentWithVariables={getContentWithVariables}
+                promptId={promptId}
                 categoryName={categoryName}
                 parentCategoryName={parentCategoryName}
                 promptType={promptType as "TEXT" | "IMAGE" | "VIDEO" | "AUDIO" | "STRUCTURED" | "SKILL"}
@@ -383,6 +388,7 @@ export function InteractivePromptContent({
               unfilledVariables={unfilledVariables}
               onVariablesFilled={handleVariablesFilled}
               getContentWithVariables={getContentWithVariables}
+              promptId={promptId}
               categoryName={categoryName}
               parentCategoryName={parentCategoryName}
               promptType={promptType as "TEXT" | "IMAGE" | "VIDEO" | "AUDIO" | "STRUCTURED" | "SKILL"}
@@ -434,6 +440,7 @@ export function InteractivePromptContent({
               unfilledVariables={unfilledVariables}
               onVariablesFilled={handleVariablesFilled}
               getContentWithVariables={getContentWithVariables}
+              promptId={promptId}
               categoryName={categoryName}
               parentCategoryName={parentCategoryName}
               promptType={promptType as "TEXT" | "IMAGE" | "VIDEO" | "AUDIO" | "STRUCTURED" | "SKILL"}
@@ -544,6 +551,7 @@ export function InteractivePromptContent({
             unfilledVariables={unfilledVariables}
             onVariablesFilled={handleVariablesFilled}
             getContentWithVariables={getContentWithVariables}
+            promptId={promptId}
             categoryName={categoryName}
             parentCategoryName={parentCategoryName}
             promptType={promptType as "TEXT" | "IMAGE" | "VIDEO" | "AUDIO" | "STRUCTURED" | "SKILL"}

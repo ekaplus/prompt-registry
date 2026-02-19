@@ -162,6 +162,7 @@ export function WidgetCard({ prompt }: WidgetCardProps) {
               size="icon"
               variant="ghost"
               className="h-6 w-6"
+              promptId={prompt.id}
               categoryName={prompt.category}
               promptType={prompt.type}
             />

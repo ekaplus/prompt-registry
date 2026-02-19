@@ -8,6 +8,7 @@ import config from "@/../prompts.config";
 import { Button } from "@/components/ui/button";
 import { PromptCard } from "@/components/prompts/prompt-card";
 import { McpServerPopup } from "@/components/mcp/mcp-server-popup";
+import { getBulkPromptUsageMetrics } from "@/lib/usage-metrics-server";
 
 interface TagPageProps {
   params: Promise<{ slug: string }>;
@@ -101,10 +102,18 @@ export default async function TagPage({ params, searchParams }: TagPageProps) {
     db.prompt.count({ where }),
   ]);
 
+  // Fetch usage metrics in bulk
+  const usageMetricsMap = await getBulkPromptUsageMetrics(promptsRaw.map(p => p.id));
+
   const prompts = promptsRaw.map((p) => ({
     ...p,
     voteCount: p._count.votes,
     contributorCount: p._count.contributors,
+    usageMetrics: usageMetricsMap.get(p.id) ? {
+      copiedCount: usageMetricsMap.get(p.id)!.copiedCount,
+      downloadCount: usageMetricsMap.get(p.id)!.downloadCount,
+      runCount: usageMetricsMap.get(p.id)!.runCount,
+    } : undefined,
   }));
 
   const totalPages = Math.ceil(total / perPage);

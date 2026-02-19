@@ -11,6 +11,7 @@ import { PromptList } from "@/components/prompts/prompt-list";
 import { SubscribeButton } from "@/components/categories/subscribe-button";
 import { CategoryFilters } from "@/components/categories/category-filters";
 import { McpServerPopup } from "@/components/mcp/mcp-server-popup";
+import { getBulkPromptUsageMetrics } from "@/lib/usage-metrics-server";
 
 interface CategoryPageProps {
   params: Promise<{ slug: string }>;
@@ -140,10 +141,18 @@ export default async function CategoryPage({ params, searchParams }: CategoryPag
     },
   });
 
+  // Fetch usage metrics in bulk
+  const usageMetricsMap = await getBulkPromptUsageMetrics(promptsRaw.map(p => p.id));
+
   const prompts = promptsRaw.map((p) => ({
     ...p,
     voteCount: p._count.votes,
     contributorCount: p._count.contributors,
+    usageMetrics: usageMetricsMap.get(p.id) ? {
+      copiedCount: usageMetricsMap.get(p.id)!.copiedCount,
+      downloadCount: usageMetricsMap.get(p.id)!.downloadCount,
+      runCount: usageMetricsMap.get(p.id)!.runCount,
+    } : undefined,
   }));
 
   return (

@@ -26,6 +26,8 @@ import {
   DEFAULT_SKILL_FILE,
   type SkillFile,
 } from "@/lib/skill-files";
+import { analyticsPrompt } from "@/lib/analytics";
+import { trackPromptUsage } from "@/lib/usage-tracking";
 
 interface SkillViewerProps {
   content: string;
@@ -227,9 +229,13 @@ export function SkillViewer({ content, className, promptId, promptSlug }: SkillV
     if (activeFileData) {
       await navigator.clipboard.writeText(activeFileData.content);
       setCopied(true);
+      if (promptId) {
+        analyticsPrompt.copy(promptId);
+        trackPromptUsage(promptId, 'COPY');
+      }
       setTimeout(() => setCopied(false), 2000);
     }
-  }, [activeFileData]);
+  }, [activeFileData, promptId]);
 
   // Download current file
   const handleDownload = useCallback(() => {
@@ -243,8 +249,12 @@ export function SkillViewer({ content, className, promptId, promptSlug }: SkillV
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
+      if (promptId) {
+        analyticsPrompt.download(promptId, 'file');
+        trackPromptUsage(promptId, 'DOWNLOAD');
+      }
     }
-  }, [activeFileData, activeFile]);
+  }, [activeFileData, activeFile, promptId]);
 
   // Download entire skill as .skill zip
   const handleDownloadSkill = useCallback(async () => {
@@ -265,6 +275,9 @@ export function SkillViewer({ content, className, promptId, promptSlug }: SkillV
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(downloadUrl);
+      
+      analyticsPrompt.download(promptId, 'skill');
+      trackPromptUsage(promptId, 'DOWNLOAD');
       
       toast.success(t("downloadStarted"));
     } catch {

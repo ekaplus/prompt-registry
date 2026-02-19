@@ -5,6 +5,7 @@ import { db } from "@/lib/db";
 import { Button } from "@/components/ui/button";
 import { Masonry } from "@/components/ui/masonry";
 import { PromptCard } from "@/components/prompts/prompt-card";
+import { getBulkPromptUsageMetrics } from "@/lib/usage-metrics-server";
 
 interface DiscoveryPromptsProps {
   isHomepage?: boolean;
@@ -117,11 +118,28 @@ export async function DiscoveryPrompts({ isHomepage = false }: DiscoveryPromptsP
     }),
   ]);
 
+  // Collect all prompt IDs
+  const allPromptIds = [
+    ...featuredPromptsRaw.map(p => p.id),
+    ...todaysMostUpvotedRaw.map(p => p.id),
+    ...latestPromptsRaw.map(p => p.id),
+    ...recentlyUpdatedRaw.map(p => p.id),
+    ...mostContributedRaw.map(p => p.id),
+  ];
+
+  // Fetch usage metrics in bulk
+  const usageMetricsMap = await getBulkPromptUsageMetrics(allPromptIds);
+
   const mapPrompt = (p: typeof featuredPromptsRaw[0]) => ({
     ...p,
     voteCount: p._count?.votes ?? 0,
     contributorCount: p._count?.contributors ?? 0,
     contributors: p.contributors,
+    usageMetrics: usageMetricsMap.get(p.id) ? {
+      copiedCount: usageMetricsMap.get(p.id)!.copiedCount,
+      downloadCount: usageMetricsMap.get(p.id)!.downloadCount,
+      runCount: usageMetricsMap.get(p.id)!.runCount,
+    } : undefined,
   });
 
   const featuredPrompts = featuredPromptsRaw.map(mapPrompt);

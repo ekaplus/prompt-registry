@@ -4,6 +4,8 @@ import { useState, useCallback } from "react";
 import { Play, ExternalLink, Zap, Clipboard, Heart } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
+import { analyticsPrompt } from "@/lib/analytics";
+import { trackPromptUsage } from "@/lib/usage-tracking";
 import {
   Dialog,
   DialogContent,
@@ -29,7 +31,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { analyticsPrompt } from "@/lib/analytics";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useBranding } from "@/components/providers/branding-provider";
 
@@ -292,6 +293,9 @@ export function RunPromptButton({
         setPendingPlatform(null);
       }
       analyticsPrompt.run(promptId, pendingPlatform.name);
+      if (promptId) {
+        trackPromptUsage(promptId, 'RUN', pendingPlatform.name);
+      }
     }
   }, [variableValues, onVariablesFilled, pendingPlatform, getContentWithVariables, content, promptId]);
 
@@ -310,6 +314,9 @@ export function RunPromptButton({
       setPendingPlatform({ id: platform.id, name: platform.name, baseUrl, supportsQuerystring: platform.supportsQuerystring });
       setDialogOpen(true);
       analyticsPrompt.run(promptId, platform.name);
+      if (promptId) {
+        trackPromptUsage(promptId, 'RUN', platform.name);
+      }
     } else {
       const url = buildUrl(platform.id, baseUrl, content, title, description);
       // Only open in new tab for http/https URLs
@@ -319,6 +326,9 @@ export function RunPromptButton({
         window.location.href = url;
       }
       analyticsPrompt.run(promptId, platform.name);
+      if (promptId) {
+        trackPromptUsage(promptId, 'RUN', platform.name);
+      }
     }
   };
 

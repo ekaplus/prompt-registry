@@ -6,6 +6,7 @@ import { Copy, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { analyticsPrompt } from "@/lib/analytics";
+import { trackPromptUsage } from "@/lib/usage-tracking";
 
 interface CopyButtonProps {
   content: string;
@@ -21,6 +22,9 @@ export function CopyButton({ content, promptId }: CopyButtonProps) {
       await navigator.clipboard.writeText(content);
       setCopied(true);
       analyticsPrompt.copy(promptId);
+      if (promptId) {
+        trackPromptUsage(promptId, 'COPY');
+      }
       toast.success(t("copied"));
       setTimeout(() => setCopied(false), 2000);
     } catch {

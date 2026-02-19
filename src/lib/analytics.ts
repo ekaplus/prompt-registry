@@ -166,6 +166,15 @@ export const analyticsPrompt = {
     });
   },
 
+  download: (promptId?: string, format?: string) => {
+    trackEvent({
+      action: "download_prompt",
+      category: "prompt",
+      label: format,
+      prompt_id: promptId,
+    });
+  },
+
   share: (promptId: string | undefined, platform: "twitter" | "hackernews" | "copy_link") => {
     trackEvent({
       action: "share_prompt",

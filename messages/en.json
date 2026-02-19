@@ -107,6 +107,14 @@
     "title": "Prompts",
     "create": "Create Prompt",
     "createSkill": "Create Skill",
+    "usageMetrics": "Usage Metrics",
+    "copied": "Copied",
+    "downloaded": "Downloaded",
+    "run": "Run",
+    "times": "times",
+    "copiedTimes": "Copied {count} times",
+    "downloadedTimes": "Downloaded {count} times",
+    "runTimes": "Run {count} times",
     "skillsDescription": "Agent Skills are multi-file prompts that give AI agents specialized capabilities. They include instructions, configurations, and supporting files that can be used with Claude, Cursor, Windsurf, and other AI coding assistants.",
     "createInfo": "This platform doesn't run or execute prompts — it's a community-driven library for sharing and discovering AI prompts. Create your prompt here, and others can copy and use it in their preferred AI tools like ChatGPT, Claude, Gemini, or any other LLM. The community can also comment on your prompts and suggest improvements through change requests.",
     "hfDataStudio": {
@@ -2243,6 +2251,18 @@
       "enableContextBlocksToBuild": "Enable some context blocks to build a prompt",
       "testContext": "Test Context"
     }
+  },
+  "metrics": {
+    "title": "Top Prompts by Usage",
+    "description": "Discover the most used prompts in the community",
+    "mostCopied": "Most Copied",
+    "mostDownloaded": "Most Downloaded",
+    "mostRun": "Most Run",
+    "allTime": "All Time",
+    "thisMonth": "This Month",
+    "thisWeek": "This Week",
+    "noData": "No data available yet",
+    "loading": "Loading metrics..."
   },
   "userExamples": {
     "addMyExample": "Add My Example",

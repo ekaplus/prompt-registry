@@ -18,6 +18,7 @@ import { Masonry } from "@/components/ui/masonry";
 import { McpServerPopup } from "@/components/mcp/mcp-server-popup";
 import { PrivatePromptsNote } from "@/components/prompts/private-prompts-note";
 import { ActivityChartWrapper } from "@/components/user/activity-chart-wrapper";
+import { getBulkPromptUsageMetrics } from "@/lib/usage-metrics-server";
 import { ProfileLinks, type CustomLink } from "@/components/user/profile-links";
 
 interface UserProfilePageProps {

@@ -12,6 +12,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { toast } from "sonner";
+import { analyticsPrompt } from "@/lib/analytics";
+import { trackPromptUsage } from "@/lib/usage-tracking";
 
 interface DownloadPromptDropdownProps {
   promptId: string;
@@ -55,6 +57,8 @@ export function DownloadPromptDropdown({ promptId, promptSlug, promptType }: Dow
       document.body.removeChild(a);
       URL.revokeObjectURL(downloadUrl);
       
+      analyticsPrompt.download(promptId, format);
+      trackPromptUsage(promptId, 'DOWNLOAD');
       toast.success(t("downloadStarted"));
     } catch {
       toast.error(t("downloadFailed"));
@@ -91,6 +95,8 @@ export function DownloadPromptDropdown({ promptId, promptSlug, promptType }: Dow
       document.body.removeChild(a);
       URL.revokeObjectURL(downloadUrl);
       
+      analyticsPrompt.download(promptId, 'skill');
+      trackPromptUsage(promptId, 'DOWNLOAD');
       toast.success(t("downloadStarted"));
     } catch {
       toast.error(t("downloadFailed"));

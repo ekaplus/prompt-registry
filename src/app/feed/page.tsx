@@ -7,6 +7,7 @@ import { db } from "@/lib/db";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { PromptList } from "@/components/prompts/prompt-list";
+import { getBulkPromptUsageMetrics } from "@/lib/usage-metrics-server";
 
 export default async function FeedPage() {
   const t = await getTranslations("feed");
@@ -78,10 +79,18 @@ export default async function FeedPage() {
       })
     : [];
 
+  // Fetch usage metrics in bulk
+  const usageMetricsMap = await getBulkPromptUsageMetrics(promptsRaw.map(p => p.id));
+
   const prompts = promptsRaw.map((p) => ({
     ...p,
     voteCount: p._count?.votes ?? 0,
     contributorCount: p._count?.contributors ?? 0,
+    usageMetrics: usageMetricsMap.get(p.id) ? {
+      copiedCount: usageMetricsMap.get(p.id)!.copiedCount,
+      downloadCount: usageMetricsMap.get(p.id)!.downloadCount,
+      runCount: usageMetricsMap.get(p.id)!.runCount,
+    } : undefined,
   }));
 
   // Get all categories for subscription

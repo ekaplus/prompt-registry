@@ -1,0 +1,83 @@
+// Custom Schema Extension - Usage Metrics
+// 
+// This file documents the Prisma models for custom migrations.
+// These models are NOT part of the main schema.prisma file.
+// 
+// To use these models in your code, you'll need to either:
+// 1. Use raw SQL queries
+// 2. Manually add these models to schema.prisma (not recommended for upstream compatibility)
+// 3. Use a separate Prisma client instance with this schema
+
+// ============================================================================
+// Usage Tracking Models
+// ============================================================================
+
+model PromptUsageLog {
+  id          String    @id @default(cuid())
+  promptId    String
+  usageType   UsageType
+  usedAt      DateTime  @default(now())
+  usedBy      String?   // nullable for anonymous users
+  platform    String?   // for RUN actions (e.g., "ChatGPT", "Claude")
+  
+  prompt      Prompt    @relation(fields: [promptId], references: [id], onDelete: Cascade)
+  user        User?     @relation(fields: [usedBy], references: [id], onDelete: SetNull)
+  
+  @@index([promptId])
+  @@index([usedBy])
+  @@index([usageType])
+  @@index([usedAt])
+  @@map("prompt_usage_logs")
+}
+
+model PromptUsageMetric {
+  promptId      String   @id
+  copiedCount   Int      @default(0)
+  downloadCount Int      @default(0)
+  runCount      Int      @default(0)
+  lastUsedAt    DateTime @default(now())
+  
+  prompt        Prompt   @relation(fields: [promptId], references: [id], onDelete: Cascade)
+  
+  @@map("prompt_usage_metrics")
+}
+
+enum UsageType {
+  COPY
+  DOWNLOAD
+  RUN
+}
+
+// ============================================================================
+// Relations to Add to Existing Models
+// ============================================================================
+
+// Add to Prompt model:
+// usageLogs    PromptUsageLog[]
+// usageMetric  PromptUsageMetric?
+
+// Add to User model:
+// promptUsageLogs PromptUsageLog[]
+
+// ============================================================================
+// TypeScript Types (for reference)
+// ============================================================================
+
+// export type UsageType = 'COPY' | 'DOWNLOAD' | 'RUN';
+// 
+// export interface PromptUsageLog {
+//   id: string;
+//   promptId: string;
+//   usageType: UsageType;
+//   usedAt: Date;
+//   usedBy: string | null;
+//   platform: string | null;
+// }
+// 
+// export interface PromptUsageMetric {
+//   promptId: string;
+//   copiedCount: number;
+//   downloadCount: number;
+//   runCount: number;
+//   lastUsedAt: Date;
+// }

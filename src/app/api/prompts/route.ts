@@ -8,6 +8,7 @@ import { generatePromptEmbedding, findAndSaveRelatedPrompts } from "@/lib/ai/emb
 import { generatePromptSlug } from "@/lib/slug";
 import { checkPromptQuality } from "@/lib/ai/quality-check";
 import { isSimilarContent, normalizeContent } from "@/lib/similarity";
+import { getBulkPromptUsageMetrics } from "@/lib/usage-metrics-server";
 
 const promptSchema = z.object({
   title: z.string().min(1).max(200),
@@ -423,12 +424,20 @@ export async function GET(request: Request) {
       db.prompt.count({ where }),
     ]);
 
+    // Fetch usage metrics in bulk
+    const usageMetricsMap = await getBulkPromptUsageMetrics(promptsRaw.map(p => p.id));
+
     // Transform to include voteCount and contributorCount, exclude internal fields
     const prompts = promptsRaw.map(({ embedding: _e, isPrivate: _p, isUnlisted: _u, unlistedAt: _ua, deletedAt: _d, ...p }) => ({
       ...p,
       voteCount: p._count.votes,
       contributorCount: p._count.contributors,
       contributors: p.contributors,
+      usageMetrics: usageMetricsMap.get(p.id) ? {
+        copiedCount: usageMetricsMap.get(p.id)!.copiedCount,
+        downloadCount: usageMetricsMap.get(p.id)!.downloadCount,
+        runCount: usageMetricsMap.get(p.id)!.runCount,
+      } : undefined,
     }));
 
     return NextResponse.json({
