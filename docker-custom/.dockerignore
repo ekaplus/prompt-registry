@@ -1,0 +1,62 @@
+# Dependencies
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Build output
+.next
+out
+build
+dist
+
+# Environment files
+.env
+.env.local
+.env.*.local
+.env.docker
+.env.production
+
+# Development
+.git
+.gitignore
+.cursor
+.claude
+.local
+.specstory
+.vscode
+.idea
+
+# Testing
+coverage
+.vitest
+
+# Documentation
+*.md
+!README.md
+docs
+
+# Docker files (already in context)
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Misc
+.DS_Store
+*.pem
+.vercel
+.sentry-build-plugin
+
+# Keep these
+!prisma
+!public
+!src
+!scripts
+!messages
+!prompts.config.ts
+!next.config.ts
+!package.json
+!package-lock.json
+!tsconfig.json
+!components.json

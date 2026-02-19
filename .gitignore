@@ -36,6 +36,10 @@ yarn-error.log*
 .env.*.local
 !.env.example
 
+# docker-custom env files
+docker-custom/.env.docker
+!docker-custom/.env.docker.example
+
 # vercel
 .vercel
 

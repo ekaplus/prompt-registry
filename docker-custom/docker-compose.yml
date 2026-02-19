@@ -1,0 +1,121 @@
+version: '3.9'
+
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: docker-custom/Dockerfile
+      args:
+        NODE_ENV: production
+    image: prompts-chat:latest
+    container_name: prompts-chat-app
+    restart: unless-stopped
+    environment:
+      # Database Connection (External PostgreSQL)
+      DATABASE_URL: ${DATABASE_URL}
+      DIRECT_URL: ${DIRECT_URL:-${DATABASE_URL}}
+      
+      # Authentication
+      AUTH_SECRET: ${AUTH_SECRET}
+      NEXTAUTH_URL: ${NEXTAUTH_URL:-http://localhost:3000}
+      
+      # OAuth Providers (optional)
+      AUTH_GITHUB_ID: ${AUTH_GITHUB_ID:-}
+      AUTH_GITHUB_SECRET: ${AUTH_GITHUB_SECRET:-}
+      AUTH_GOOGLE_ID: ${AUTH_GOOGLE_ID:-}
+      AUTH_GOOGLE_SECRET: ${AUTH_GOOGLE_SECRET:-}
+      AUTH_AZURE_AD_CLIENT_ID: ${AUTH_AZURE_AD_CLIENT_ID:-}
+      AUTH_AZURE_AD_CLIENT_SECRET: ${AUTH_AZURE_AD_CLIENT_SECRET:-}
+      AUTH_AZURE_AD_TENANT_ID: ${AUTH_AZURE_AD_TENANT_ID:-}
+      
+      # AI Features (optional)
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_BASE_URL: ${OPENAI_BASE_URL:-}
+      OPENAI_EMBEDDING_MODEL: ${OPENAI_EMBEDDING_MODEL:-}
+      OPENAI_GENERATIVE_MODEL: ${OPENAI_GENERATIVE_MODEL:-}
+      
+      # Storage (optional)
+      ENABLED_STORAGE: ${ENABLED_STORAGE:-url}
+      S3_BUCKET: ${S3_BUCKET:-}
+      S3_REGION: ${S3_REGION:-}
+      S3_ACCESS_KEY_ID: ${S3_ACCESS_KEY_ID:-}
+      S3_SECRET_ACCESS_KEY: ${S3_SECRET_ACCESS_KEY:-}
+      S3_ENDPOINT: ${S3_ENDPOINT:-}
+      
+      # Branding (Docker Build Configuration)
+      BRAND_NAME: ${BRAND_NAME:-My Prompt Library}
+      BRAND_DESCRIPTION: ${BRAND_DESCRIPTION:-Collect, organize, and share AI prompts}
+      BRAND_LOGO: ${BRAND_LOGO:-/logo.svg}
+      BRAND_LOGO_DARK: ${BRAND_LOGO_DARK:-}
+      BRAND_FAVICON: ${BRAND_FAVICON:-/logo.svg}
+      BRAND_COLOR: ${BRAND_COLOR:-#6366f1}
+      
+      # Theme
+      THEME_RADIUS: ${THEME_RADIUS:-sm}
+      THEME_VARIANT: ${THEME_VARIANT:-default}
+      THEME_DENSITY: ${THEME_DENSITY:-default}
+      
+      # Auth Configuration
+      AUTH_PROVIDERS: ${AUTH_PROVIDERS:-credentials}
+      ALLOW_REGISTRATION: ${ALLOW_REGISTRATION:-true}
+      
+      # Internationalization
+      LOCALES: ${LOCALES:-en}
+      DEFAULT_LOCALE: ${DEFAULT_LOCALE:-en}
+      
+      # Feature Flags
+      FEATURE_PRIVATE_PROMPTS: ${FEATURE_PRIVATE_PROMPTS:-true}
+      FEATURE_CHANGE_REQUESTS: ${FEATURE_CHANGE_REQUESTS:-true}
+      FEATURE_CATEGORIES: ${FEATURE_CATEGORIES:-true}
+      FEATURE_TAGS: ${FEATURE_TAGS:-true}
+      FEATURE_COMMENTS: ${FEATURE_COMMENTS:-true}
+      FEATURE_AI_SEARCH: ${FEATURE_AI_SEARCH:-false}
+      FEATURE_AI_GENERATION: ${FEATURE_AI_GENERATION:-false}
+      FEATURE_MCP: ${FEATURE_MCP:-false}
+      
+      # Logging
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      
+      # Cron
+      CRON_SECRET: ${CRON_SECRET:-}
+      
+      # Monitoring
+      SENTRY_AUTH_TOKEN: ${SENTRY_AUTH_TOKEN:-}
+      GOOGLE_ANALYTICS_ID: ${GOOGLE_ANALYTICS_ID:-}
+      
+      # Application
+      NODE_ENV: production
+      PORT: 3000
+      HOSTNAME: 0.0.0.0
+    ports:
+      - "${APP_PORT:-3000}:3000"
+    volumes:
+      # Persistent data volume (for uploads, cache, etc.)
+      - app_data:/app/data
+      # Optional: Mount custom logo/assets
+      # - ./custom-assets:/app/public/custom:ro
+    networks:
+      - prompts-network
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/api/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    # Optional: Resource limits
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: '2'
+    #       memory: 2G
+    #     reservations:
+    #       cpus: '0.5'
+    #       memory: 512M
+
+volumes:
+  app_data:
+    driver: local
+
+networks:
+  prompts-network:
+    driver: bridge
