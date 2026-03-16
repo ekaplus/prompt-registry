@@ -77,20 +77,19 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    echo "Building Docker image using docker-compose..."
+                    echo "Building Docker image using docker build..."
                     
-                    // Build using docker-compose (recommended approach)
+                    // Build directly with docker build (avoids docker-compose env var issues)
                     sh """
-                        docker compose -f docker-custom/docker-compose.yml build \
+                        docker build \
+                            -f docker-custom/Dockerfile \
+                            -t prompts-chat:latest \
+                            -t ${DOCKER_IMAGE} \
+                            -t ${DOCKER_IMAGE_LATEST} \
                             --build-arg NODE_ENV=production \
                             --build-arg BUILD_NUMBER=${BUILD_NUMBER} \
-                            --build-arg GIT_COMMIT=${GIT_COMMIT_SHORT}
-                    """
-                    
-                    // Tag the built image
-                    sh """
-                        docker tag prompts-chat:latest ${DOCKER_IMAGE}
-                        docker tag prompts-chat:latest ${DOCKER_IMAGE_LATEST}
+                            --build-arg GIT_COMMIT=${GIT_COMMIT_SHORT} \
+                            .
                     """
                     
                     echo "Docker image built successfully: ${DOCKER_IMAGE}"
