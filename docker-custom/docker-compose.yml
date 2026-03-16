@@ -12,7 +12,7 @@ services:
     restart: unless-stopped
     environment:
       # Database Connection (External PostgreSQL)
-      DATABASE_URL: ${DATABASE_URL}
+      DATABASE_URL: postgresql://postgres:postgres@172.16.1.155:5432/prompts_chat?schema=public
       DIRECT_URL: ${DIRECT_URL:-${DATABASE_URL}}
       
       # Authentication
