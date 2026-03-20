@@ -34,9 +34,14 @@ export interface PromptCardProps {
     type: string;
     structuredFormat?: string | null;
     mediaUrl: string | null;
+    requiresMediaUpload?: boolean;
+    requiredMediaType?: string | null;
+    requiredMediaCount?: number | null;
     isPrivate: boolean;
-    voteCount: number;
+    isUnlisted?: boolean;
+    voteCount?: number;
     createdAt: Date;
+    updatedAt?: Date;
     author: {
       id: string;
       name: string | null;

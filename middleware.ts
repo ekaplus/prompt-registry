@@ -148,3 +148,5 @@ export const config = {
     '/((?!_next/static|_next/image|favicon.ico|monitoring|.*\\.(?:png|jpg|jpeg|gif|svg|ico|webp|woff|woff2|ttf|eot)$).*)',
   ],
 };
+
+export const runtime = 'nodejs';

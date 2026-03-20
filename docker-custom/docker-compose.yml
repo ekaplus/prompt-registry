@@ -15,6 +15,7 @@ services:
       
       # Authentication
       AUTH_SECRET: ${AUTH_SECRET:-}
+      AUTH_TRUST_HOST: true
       NEXTAUTH_URL: ${NEXTAUTH_URL:-http://localhost:3000}
       
       # OAuth Providers (optional)

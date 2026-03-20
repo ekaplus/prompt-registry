@@ -48,22 +48,19 @@ export function LoginForm() {
       const result = await signIn("credentials", {
         email: data.email,
         password: data.password,
-        redirect: false,
+        redirectTo: "/",
       });
 
       if (result?.error) {
         analyticsAuth.loginFailed("credentials");
         toast.error(t("invalidCredentials"));
+        setIsLoading(false);
         return;
       }
 
       analyticsAuth.login("credentials");
-      toast.success(t("loginSuccess"));
-      router.push("/");
-      router.refresh();
     } catch {
       toast.error(t("invalidCredentials"));
-    } finally {
       setIsLoading(false);
     }
   }

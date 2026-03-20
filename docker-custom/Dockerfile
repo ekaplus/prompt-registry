@@ -16,22 +16,28 @@ RUN npm ci --only=production && \
 FROM node:24-bookworm-slim AS builder
 WORKDIR /app
 
+# Copy Prisma schema first (needed for npm postinstall)
+COPY prisma ./prisma/
+
 # Install all dependencies (including devDependencies for build)
 COPY package.json package-lock.json ./
+
+# Accept DATABASE_URL as build argument (optional - defaults to dummy URL)
+ARG DATABASE_URL="postgresql://dummy:dummy@localhost:5432/dummy"
+ENV DATABASE_URL=$DATABASE_URL
+
 RUN npm ci
 
 # Copy application source
 COPY . .
 
-# Copy Prisma schema
-COPY prisma ./prisma/
-
-# Generate Prisma Client
-RUN npx prisma generate
-
 # Build Next.js application
 # Note: next.config.ts already has output: "standalone" enabled
 ENV NODE_ENV=production
+# Disable telemetry
+ENV NEXT_TELEMETRY_DISABLED=1
+# Build the application (prisma generate runs via npm run build)
+# Build without middleware first, then rebuild with middleware
 RUN npm run build
 
 # Stage 3: Production Runner

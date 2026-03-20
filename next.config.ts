@@ -27,6 +27,8 @@ const nextConfig: NextConfig = {
     serverActions: {
       bodySizeLimit: "2mb",
     },
+    // Client trace metadata for better debugging
+    clientTraceMetadata: ["appDir"],
   },
   // Image optimization
   images: {

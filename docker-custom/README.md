@@ -129,10 +129,15 @@ Enable authentication providers:
 AUTH_PROVIDERS=credentials,github,google
 ALLOW_REGISTRATION=true
 
+# Required for Docker/reverse proxy deployments (NextAuth v5)
+AUTH_TRUST_HOST=true
+
 # OAuth credentials
 AUTH_GITHUB_ID=your_github_client_id
 AUTH_GITHUB_SECRET=your_github_client_secret
 ```
+
+**Important:** `AUTH_TRUST_HOST=true` is required for NextAuth v5 in Docker environments to properly handle redirects after login. Without it, you may need to click the login button twice.
 
 ### Feature Flags
 

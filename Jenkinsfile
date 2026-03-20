@@ -2,6 +2,7 @@ pipeline {
     agent any
     
     environment {
+        DOCKER_HOST = "unix:///var/run/docker.sock"
         // Docker image configuration
         DOCKER_REGISTRY = '192.168.1.225:50000'  // Open Docker registry (no auth required)
         IMAGE_NAME = 'prompts-chat'
