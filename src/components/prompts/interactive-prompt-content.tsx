@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import { copyToClipboard } from "@/lib/clipboard";
 import { RunPromptButton } from "./run-prompt-button";
 import { TranslateButton } from "./translate-button";
 import { DownloadPromptDropdown } from "./download-prompt-dropdown";
@@ -249,9 +250,9 @@ export function InteractivePromptContent({
   }, []);
 
   // Copy to clipboard
-  const copyToClipboard = async () => {
+  const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(getFinalContent());
+      await copyToClipboard(getFinalContent());
       setCopied(true);
       if (promptId) {
         trackPromptUsage(promptId, 'COPY');
@@ -294,7 +295,7 @@ export function InteractivePromptContent({
             <div className="flex items-center gap-2">
               {promptId && <DownloadPromptDropdown promptId={promptId} promptSlug={promptSlug} promptType={promptType} />}
               { sharePrompts && shareTitle && <ShareDropdown title={shareTitle} />}
-              <Button variant="ghost" size="sm" onClick={copyToClipboard}>
+              <Button variant="ghost" size="sm" onClick={handleCopy}>
                 {copied ? (
                   <Check className="h-4 w-4 text-green-500" />
                 ) : (
@@ -329,7 +330,7 @@ export function InteractivePromptContent({
             <div className="flex items-center gap-2">
               {promptId && <DownloadPromptDropdown promptId={promptId} promptSlug={promptSlug} promptType={promptType} />}
               {sharePrompts && shareTitle && <ShareDropdown title={shareTitle} />}
-              <Button variant="ghost" size="sm" onClick={copyToClipboard}>
+              <Button variant="ghost" size="sm" onClick={handleCopy}>
                 {copied ? (
                   <Check className="h-4 w-4 text-green-500" />
                 ) : (

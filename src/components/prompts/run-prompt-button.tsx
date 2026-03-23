@@ -4,6 +4,7 @@ import { useState, useCallback } from "react";
 import { Play, ExternalLink, Zap, Clipboard, Heart } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
+import { copyToClipboard } from "@/lib/clipboard";
 import { analyticsPrompt } from "@/lib/analytics";
 import { trackPromptUsage } from "@/lib/usage-tracking";
 import {
@@ -280,7 +281,7 @@ export function RunPromptButton({
         : content;
       
       if (pendingPlatform.supportsQuerystring === false) {
-        navigator.clipboard.writeText(finalContent);
+        await copyToClipboard(finalContent);
         setDialogOpen(true);
       } else {
         const url = buildUrl(pendingPlatform.id, pendingPlatform.baseUrl, finalContent, title, description);
@@ -310,7 +311,7 @@ export function RunPromptButton({
     }
     
     if (platform.supportsQuerystring === false) {
-      navigator.clipboard.writeText(content);
+      await copyToClipboard(content);
       setPendingPlatform({ id: platform.id, name: platform.name, baseUrl, supportsQuerystring: platform.supportsQuerystring });
       setDialogOpen(true);
       analyticsPrompt.run(promptId, platform.name);

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Terminal } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { copyToClipboard } from "@/lib/clipboard";
 
 export function CliCommand() {
   const t = useTranslations("homepage");
@@ -32,11 +33,11 @@ export function CliCommand() {
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(command);
+      await copyToClipboard(command);
       setCopied(true);
       setTimeout(() => setCopied(false), 1500);
     } catch {
-      // Fallback for older browsers
+      // Silent fail
     }
   };
 

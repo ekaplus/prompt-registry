@@ -7,6 +7,7 @@ import { useTranslations } from "next-intl";
 import { Copy, ExternalLink, Play } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
+import { copyToClipboard } from "@/lib/clipboard";
 import { RunPromptButton } from "@/components/prompts/run-prompt-button";
 import { analyticsWidget } from "@/lib/analytics";
 import type { WidgetPrompt } from "@/lib/plugins/widgets";
@@ -25,12 +26,16 @@ export function WidgetCard({ prompt }: WidgetCardProps) {
     return <>{prompt.render()}</>;
   }
 
-  const copyToClipboard = async () => {
-    await navigator.clipboard.writeText(prompt.content);
-    setCopied(true);
-    toast.success(tCommon("copiedToClipboard"));
-    analyticsWidget.copy(prompt.id, prompt.actionLabel || prompt.sponsor?.name);
-    setTimeout(() => setCopied(false), 2000);
+  const handleCopy = async () => {
+    try {
+      await copyToClipboard(prompt.content);
+      setCopied(true);
+      toast.success(tCommon("copiedToClipboard"));
+      analyticsWidget.copy(prompt.id, prompt.actionLabel || prompt.sponsor?.name);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      toast.error(tCommon("failedToCopy"));
+    }
   };
 
   const handleActionClick = () => {
@@ -138,7 +143,7 @@ export function WidgetCard({ prompt }: WidgetCardProps) {
         </div>
         <div className="flex items-center gap-2">
           <button
-            onClick={copyToClipboard}
+            onClick={handleCopy}
             className="p-1 rounded hover:bg-accent"
           >
             <Copy className="h-3 w-3" />

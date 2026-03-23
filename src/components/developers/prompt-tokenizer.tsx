@@ -26,6 +26,7 @@ import {
   Highlighter
 } from "lucide-react";
 import { toast } from "sonner";
+import { copyToClipboard } from "@/lib/clipboard";
 import { cn } from "@/lib/utils";
 
 // Default settings
@@ -328,10 +329,14 @@ Context Usage: ${contextUsage.toFixed(2)}% of ${formatNumber(contextWindow)}
 Estimated Input Cost: ${formatPrice(estimatedInputCost)}
 Estimated Output Cost: ${formatPrice(estimatedOutputCost)}`;
     
-    await navigator.clipboard.writeText(report);
-    setCopied(true);
-    toast.success(t("copied"));
-    setTimeout(() => setCopied(false), 2000);
+    try {
+      await copyToClipboard(report);
+      setCopied(true);
+      toast.success(t("copied"));
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      toast.error(t("failedToCopy"));
+    }
   };
 
   const clearText = () => {

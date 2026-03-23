@@ -19,6 +19,7 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Copy, Check, Code2, ExternalLink, RotateCcw } from "lucide-react";
 import { toast } from "sonner";
+import { copyToClipboard } from "@/lib/clipboard";
 import { EMBED_EXAMPLES } from "./embed-examples";
 
 interface EmbedConfig {
@@ -165,10 +166,14 @@ export function EmbedDesigner() {
   }, [config.height, generatePreviewURL]);
 
   const handleCopyEmbed = async () => {
-    await navigator.clipboard.writeText(generateEmbedCode());
-    setCopied(true);
-    toast.success(t("embedCopied"));
-    setTimeout(() => setCopied(false), 2000);
+    try {
+      await copyToClipboard(generateEmbedCode());
+      setCopied(true);
+      toast.success(t("embedCopied"));
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      toast.error(t("failedToCopy"));
+    }
   };
 
   const loadExample = (exampleValue: string) => {

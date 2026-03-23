@@ -13,6 +13,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { toast } from "sonner";
+import { copyToClipboard } from "@/lib/clipboard";
 import { RunPromptButton } from "@/components/prompts/run-prompt-button";
 import { analyticsPrompt } from "@/lib/analytics";
 import { trackPromptUsage } from "@/lib/usage-tracking";
@@ -103,7 +104,7 @@ export function VariableFillModal({
   // Handle copy
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(getFinalContent());
+      await copyToClipboard(getFinalContent());
       analyticsPrompt.fillVariables(promptId);
       analyticsPrompt.copy(promptId);
       if (promptId) {

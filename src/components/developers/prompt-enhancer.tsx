@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/select";
 import { Loader2, Sparkles, Copy, Check, Trash2, HardDrive } from "lucide-react";
 import { toast } from "sonner";
+import { copyToClipboard } from "@/lib/clipboard";
 import { RunPromptButton } from "@/components/prompts/run-prompt-button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
@@ -170,10 +171,14 @@ export function PromptEnhancer() {
 
   const handleCopy = async () => {
     if (result?.improved) {
-      await navigator.clipboard.writeText(result.improved);
-      setCopied(true);
-      toast.success(t("copied"));
-      setTimeout(() => setCopied(false), 2000);
+      try {
+        await copyToClipboard(result.improved);
+        setCopied(true);
+        toast.success(t("copied"));
+        setTimeout(() => setCopied(false), 2000);
+      } catch {
+        toast.error(t("failedToCopy"));
+      }
     }
   };
 

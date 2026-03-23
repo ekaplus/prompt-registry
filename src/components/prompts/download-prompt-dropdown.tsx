@@ -12,6 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { toast } from "sonner";
+import { copyToClipboard } from "@/lib/clipboard";
 import { analyticsPrompt } from "@/lib/analytics";
 import { trackPromptUsage } from "@/lib/usage-tracking";
 
@@ -68,7 +69,7 @@ export function DownloadPromptDropdown({ promptId, promptSlug, promptType }: Dow
   const handleCopyUrl = async (format: "md" | "yml") => {
     const url = getFileUrl(format);
     try {
-      await navigator.clipboard.writeText(url);
+      await copyToClipboard(url);
       setCopiedFormat(format);
       toast.success(t("urlCopied"));
       setTimeout(() => setCopiedFormat(null), 2000);

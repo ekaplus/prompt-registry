@@ -18,6 +18,7 @@ import {
   X,
 } from "lucide-react";
 import { toast } from "sonner";
+import { copyToClipboard } from "@/lib/clipboard";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -227,15 +228,19 @@ export function SkillViewer({ content, className, promptId, promptSlug }: SkillV
   // Copy current file content
   const handleCopy = useCallback(async () => {
     if (activeFileData) {
-      await navigator.clipboard.writeText(activeFileData.content);
-      setCopied(true);
-      if (promptId) {
-        analyticsPrompt.copy(promptId);
-        trackPromptUsage(promptId, 'COPY');
+      try {
+        await copyToClipboard(activeFileData.content);
+        setCopied(true);
+        if (promptId) {
+          analyticsPrompt.copy(promptId);
+          trackPromptUsage(promptId, 'COPY');
+        }
+        setTimeout(() => setCopied(false), 2000);
+      } catch {
+        toast.error(t("failedToCopy"));
       }
-      setTimeout(() => setCopied(false), 2000);
     }
-  }, [activeFileData, promptId]);
+  }, [activeFileData, promptId, t]);
 
   // Download current file
   const handleDownload = useCallback(() => {

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Copy, Check } from "lucide-react";
 import Editor from "@monaco-editor/react";
 import { cn } from "@/lib/utils";
+import { copyToClipboard } from "@/lib/clipboard";
 
 interface CodeEditorProps {
   code: string;
@@ -27,9 +28,13 @@ export function CodeEditor({ code, language, filename }: CodeEditorProps) {
   }, []);
 
   const handleCopy = async () => {
-    await navigator.clipboard.writeText(code);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    try {
+      await copyToClipboard(code);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Silent fail for book examples
+    }
   };
 
   return (

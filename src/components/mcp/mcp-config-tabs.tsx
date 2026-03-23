@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Check, Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { copyToClipboard } from "@/lib/clipboard";
 import { analyticsMcp } from "@/lib/analytics";
 
 type Client = "cursor" | "claude-code" | "vscode" | "codex" | "windsurf" | "gemini";
@@ -209,10 +210,14 @@ export function McpConfigTabs({ baseUrl, queryParams, className, mode, onModeCha
   const displayConfig = getConfig(selectedClient, selectedMode, mcpUrl, displayApiKey, queryParams);
 
   const handleCopy = async () => {
-    await navigator.clipboard.writeText(config);
-    analyticsMcp.copyCommand(`${selectedClient}-${selectedMode}`);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    try {
+      await copyToClipboard(config);
+      analyticsMcp.copyCommand(`${selectedClient}-${selectedMode}`);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Silent fail
+    }
   };
 
   const clients: Client[] = ["vscode", "windsurf", "cursor", "claude-code", "codex", "gemini"];

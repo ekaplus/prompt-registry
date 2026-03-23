@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Schoolbell } from "next/font/google";
+import { copyToClipboard } from "@/lib/clipboard";
 
 const kidsFont = Schoolbell({
   subsets: ["latin"],
@@ -136,7 +137,7 @@ export function Header({ authProvider = "credentials", allowRegistration = true 
       if (!logoUrl) return;
       const response = await fetch(logoUrl);
       const svgContent = await response.text();
-      await navigator.clipboard.writeText(svgContent);
+      await copyToClipboard(svgContent);
     } catch (error) {
       console.error("Failed to copy logo:", error);
     }

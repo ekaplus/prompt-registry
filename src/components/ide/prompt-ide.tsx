@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Copy, Play, Code2, FileJson, FileText, Video, Music, Image as ImageIcon, MessageSquare, Terminal, AlertCircle, XCircle, ChevronDown, ChevronUp, ChevronRight, Dices, Loader2, Plus } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { toast } from "sonner";
+import { copyToClipboard } from "@/lib/clipboard";
 import { RunPromptButton } from "@/components/prompts/run-prompt-button";
 
 // Import the actual prompts.chat library
@@ -533,9 +534,13 @@ export function PromptIde() {
     });
   }, [getTypeErrors]);
 
-  const copyOutput = useCallback(() => {
-    navigator.clipboard.writeText(output);
-    toast.success(t("copied"));
+  const copyOutput = useCallback(async () => {
+    try {
+      await copyToClipboard(output);
+      toast.success(t("copied"));
+    } catch {
+      toast.error(t("failedToCopy"));
+    }
   }, [output, t]);
 
   const router = useRouter();

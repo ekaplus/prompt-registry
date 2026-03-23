@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/select";
 import { Loader2, Sparkles, Copy, Check } from "lucide-react";
 import { toast } from "sonner";
+import { copyToClipboard } from "@/lib/clipboard";
 
 const OUTPUT_TYPES = [
   { value: "text", label: "Text" },
@@ -81,10 +82,14 @@ export function ImprovePromptDemo() {
 
   const handleCopy = async () => {
     if (result?.improved) {
-      await navigator.clipboard.writeText(result.improved);
-      setCopied(true);
-      toast.success("Copied to clipboard");
-      setTimeout(() => setCopied(false), 2000);
+      try {
+        await copyToClipboard(result.improved);
+        setCopied(true);
+        toast.success("Copied to clipboard");
+        setTimeout(() => setCopied(false), 2000);
+      } catch {
+        toast.error("Failed to copy");
+      }
     }
   };
 

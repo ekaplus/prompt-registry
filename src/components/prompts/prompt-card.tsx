@@ -11,6 +11,7 @@ import { Badge } from "@/components/ui/badge";
 import { CodeView } from "@/components/ui/code-view";
 import { toast } from "sonner";
 import { prettifyJson } from "@/lib/format";
+import { copyToClipboard as copyTextToClipboard } from "@/lib/clipboard";
 import { PinButton } from "@/components/prompts/pin-button";
 import { RunPromptButton } from "@/components/prompts/run-prompt-button";
 import { VariableFillModal, hasVariables, renderContentWithVariables } from "@/components/prompts/variable-fill-modal";
@@ -148,7 +149,7 @@ export function PromptCard({ prompt, showPinButton = false, isPinned = false }: 
 
   const copyToClipboard = async (content: string) => {
     try {
-      await navigator.clipboard.writeText(content);
+      await copyTextToClipboard(content);
       
       // Track usage
       const { analyticsPrompt } = await import("@/lib/analytics");

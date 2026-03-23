@@ -4,6 +4,7 @@ import { useState, useCallback } from "react";
 import { Play, Copy, Check, Loader2, RefreshCw, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { copyToClipboard } from "@/lib/clipboard";
 import { useTranslations, useLocale } from "next-intl";
 import { getLocaleField, type BuilderField } from "./locales";
 
@@ -84,9 +85,13 @@ export function PromptBuilder({
   }, [values]);
 
   const handleCopy = async () => {
-    await navigator.clipboard.writeText(buildPrompt());
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    try {
+      await copyToClipboard(buildPrompt());
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Silent fail for builder examples
+    }
   };
 
   const handleRun = async () => {

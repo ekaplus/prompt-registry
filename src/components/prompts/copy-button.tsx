@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { Copy, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { copyToClipboard } from "@/lib/clipboard";
 import { analyticsPrompt } from "@/lib/analytics";
 import { trackPromptUsage } from "@/lib/usage-tracking";
 
@@ -17,9 +18,9 @@ export function CopyButton({ content, promptId }: CopyButtonProps) {
   const t = useTranslations("common");
   const [copied, setCopied] = useState(false);
 
-  const copyToClipboard = async () => {
+  const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(content);
+      await copyToClipboard(content);
       setCopied(true);
       analyticsPrompt.copy(promptId);
       if (promptId) {
@@ -33,7 +34,7 @@ export function CopyButton({ content, promptId }: CopyButtonProps) {
   };
 
   return (
-    <Button variant="ghost" size="sm" onClick={copyToClipboard}>
+    <Button variant="ghost" size="sm" onClick={handleCopy}>
       {copied ? (
         <Check className="h-4 w-4 text-green-500" />
       ) : (

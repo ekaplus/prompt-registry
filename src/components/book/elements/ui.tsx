@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ChevronDown, ChevronRight, Copy, Check, Lightbulb, AlertTriangle, Info, Zap, ArrowRight, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { copyToClipboard } from "@/lib/clipboard";
 import { RunPromptButton } from "@/components/prompts/run-prompt-button";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
@@ -92,9 +93,13 @@ export function CopyableCode({ code, language }: CopyableCodeProps) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
-    await navigator.clipboard.writeText(code);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    try {
+      await copyToClipboard(code);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Silent fail for book examples
+    }
   };
 
   return (
@@ -212,9 +217,13 @@ export function TryIt({ prompt, description, title, compact = false }: TryItProp
   };
 
   const handleCopy = async () => {
-    await navigator.clipboard.writeText(prompt);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    try {
+      await copyToClipboard(prompt);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Silent fail for book examples
+    }
   };
 
   if (compact) {

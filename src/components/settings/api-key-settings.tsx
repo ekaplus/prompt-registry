@@ -25,6 +25,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { toast } from "sonner";
+import { copyToClipboard } from "@/lib/clipboard";
 
 interface ApiKeySettingsProps {
   initialApiKey: string | null;
@@ -110,10 +111,14 @@ export function ApiKeySettings({
     }
   };
 
-  const copyToClipboard = () => {
+  const handleCopyApiKey = async () => {
     if (apiKey) {
-      navigator.clipboard.writeText(apiKey);
-      toast.success(tCommon("copied"));
+      try {
+        await copyToClipboard(apiKey);
+        toast.success(tCommon("copied"));
+      } catch {
+        toast.error(tCommon("failedToCopy"));
+      }
     }
   };
 
@@ -150,7 +155,7 @@ export function ApiKeySettings({
                     <Eye className="h-4 w-4" />
                   )}
                 </Button>
-                <Button variant="outline" size="icon" onClick={copyToClipboard}>
+                <Button variant="outline" size="icon" onClick={handleCopyApiKey}>
                   <Copy className="h-4 w-4" />
                 </Button>
               </div>

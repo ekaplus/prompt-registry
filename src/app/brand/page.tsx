@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Download, Copy, Check } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
+import { copyToClipboard } from "@/lib/clipboard";
 import { useBranding } from "@/components/providers/branding-provider";
 import { notFound } from "next/navigation";
 
@@ -134,9 +135,13 @@ function ColorCard({ color, name, description }: ColorCardProps) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
-    await navigator.clipboard.writeText(color);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    try {
+      await copyToClipboard(color);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Silent fail
+    }
   };
 
   return (
