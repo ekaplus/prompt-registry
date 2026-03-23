@@ -427,7 +427,7 @@ export function InteractivePromptContent({
             )}
             {promptId && <DownloadPromptDropdown promptId={promptId} promptSlug={promptSlug} promptType={promptType} />}
             {sharePrompts && shareTitle && <ShareDropdown title={shareTitle} />}
-            <Button variant="ghost" size="sm" onClick={copyToClipboard}>
+            <Button variant="ghost" size="sm" onClick={handleCopy}>
               {copied ? (
                 <Check className="h-4 w-4 text-green-500" />
               ) : (
@@ -538,7 +538,7 @@ export function InteractivePromptContent({
           )}
           {promptId && <DownloadPromptDropdown promptId={promptId} promptSlug={promptSlug} promptType={promptType} />}
           {sharePrompts && shareTitle && <ShareDropdown title={shareTitle} />}
-          <Button variant="ghost" size="sm" onClick={copyToClipboard}>
+          <Button variant="ghost" size="sm" onClick={handleCopy}>
             {copied ? (
               <Check className="h-4 w-4 text-green-500" />
             ) : (
