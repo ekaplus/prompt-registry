@@ -269,7 +269,7 @@ export function RunPromptButton({
     setVariableDialogOpen(true);
   }, [unfilledVariables]);
 
-  const handleVariableSubmit = useCallback(() => {
+  const handleVariableSubmit = useCallback(async () => {
     if (onVariablesFilled) {
       onVariablesFilled(variableValues);
     }
@@ -300,7 +300,7 @@ export function RunPromptButton({
     }
   }, [variableValues, onVariablesFilled, pendingPlatform, getContentWithVariables, content, promptId]);
 
-  const handleRun = (platform: Platform, baseUrl: string) => {
+  const handleRun = async (platform: Platform, baseUrl: string) => {
     // Check if there are any variables to fill
     const hasVariables = unfilledVariables.length > 0;
     
